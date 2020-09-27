@@ -6,6 +6,4 @@ let f = function(arr) {
     return;
 }
 
-
-
 module.exports = f;

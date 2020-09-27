@@ -13,9 +13,6 @@ let isSimpleNum = function(num) {
     return true;
 };
 
-
-
-
 let f = function(num) {
     if (num > 1000) {
         return 'Данные неверны';
@@ -23,9 +20,6 @@ let f = function(num) {
     const answer = isSimpleNum(num) ? 'простое' : 'составное';
     return `Число ${num} - ${answer} число`;
 };
-
-
-
 
 module.exports = isSimpleNum;
 module.exports = f;

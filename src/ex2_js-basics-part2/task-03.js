@@ -20,6 +20,4 @@ let f = function(arr) {
     return [evenNumCount, oddNumCount, zeroNumCount];
 };
 
-
-
 module.exports = f;
