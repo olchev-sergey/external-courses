@@ -1,9 +1,6 @@
-let f = function(arr) {
-    //кол-во нечетных чисел
+let oddEvenZeroCount = function(arr) {
     let oddNumCount = 0;
-    //кол-во четныхs чисел
     let evenNumCount = 0;
-    //кол-во нулей
     let zeroNumCount = 0;
     arr.forEach( (element) => {
         if (typeof element == 'number' && !Number.isNaN(element)) {
@@ -20,4 +17,4 @@ let f = function(arr) {
     return [evenNumCount, oddNumCount, zeroNumCount];
 };
 
-module.exports = f;
+module.exports = oddEvenZeroCount;

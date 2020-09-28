@@ -1,15 +1,16 @@
-let f = function( x ) {
-    if (typeof x === 'string') {
+let checkType = function( x ) {
+    const typeX = typeof x;
+    if (typeX === 'string') {
         return 'string';
     }
-    if (typeof x === 'number') {
+    if (typeX === 'number') {
         if (Number.isNaN(x)) {
             return undefined;
         } 
         return 'number';
     }
-    //not a number and string
+    
     return undefined;   
 }
 
-module.exports = f;
+module.exports = checkType;

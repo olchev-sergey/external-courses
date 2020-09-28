@@ -1,4 +1,4 @@
-let f = function(arr) {
+let printArr = function(arr) {
     arr.forEach(element => {
         console.log(element);
     });
@@ -6,4 +6,4 @@ let f = function(arr) {
     return;
 }
 
-module.exports = f;
+module.exports = printArr;

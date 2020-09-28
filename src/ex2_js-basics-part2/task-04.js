@@ -1,4 +1,4 @@
-let f = function(arr) {
+let isArrIdentical = function(arr) {
     let firstElement = arr.shift();
     for (let elem of arr) {
         if (elem != firstElement) {
@@ -8,4 +8,4 @@ let f = function(arr) {
     return true;
 };
 
-module.exports = f;
+module.exports = isArrIdentical;
