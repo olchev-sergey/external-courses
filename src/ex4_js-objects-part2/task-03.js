@@ -1,5 +1,5 @@
-function deleleteSpaces(str) {
-    return str.slice(1, -1);
+function deleteSpaces(str) {
+    return str.trim();
 }
 
-module.exports = deleleteSpaces;
+module.exports = deleteSpaces;
