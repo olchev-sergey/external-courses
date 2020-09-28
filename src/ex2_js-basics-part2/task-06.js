@@ -1,5 +1,9 @@
 let isSimpleNum = function(num) {
-    for (let i = 2; i < Math.sqrt(num) + 1; i++) {
+    if (num === 0 || num === 1) {
+        return null;
+    }
+
+    for (let i = 2; i < num / 2; i++) {
         if (num % i === 0) {
             return false;
         }
@@ -12,7 +16,13 @@ let f = function(num) {
     if (num > 1000) {
         return 'Данные неверны';
     }
-    const answer = isSimpleNum(num) ? 'простое' : 'составное';
+    let answer = '';
+    if (isSimpleNum(num) === null) {
+        answer = 'ни простое и не составное';
+    } else {
+        answer = isSimpleNum(num) ? 'простое' : 'составное';
+    }
+
     return `Число ${num} - ${answer} число`;
 };
 
