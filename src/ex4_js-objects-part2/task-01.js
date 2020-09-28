@@ -1,6 +1,6 @@
 function findInProto(searchKey, obj) {
-    if (obj.__proto__.hasOwnProperty(searchKey)) {
-        return obj.__proto__[searchKey];
+    if (Object.getPrototypeOf(obj).hasOwnProperty(searchKey)) {
+        return Object.getPrototypeOf(obj)[searchKey];
     }
 
     return undefined;
