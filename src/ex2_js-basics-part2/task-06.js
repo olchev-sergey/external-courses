@@ -1,15 +1,10 @@
 let isSimpleNum = function(num) {
-   if (num === 1 || num === 2 || num === 5) {
-        return true;
+    for (let i = 2; i < Math.sqrt(num) + 1; i++) {
+        if (num % i === 0) {
+            return false;
+        }
     }
-    if (
-        num % 2 === 0 
-        || num % 3 === 0
-        || num % 5 === 0 
-        || num % 7 === 0
-    ) {
-        return false;
-    }
+
     return true;
 };
 
