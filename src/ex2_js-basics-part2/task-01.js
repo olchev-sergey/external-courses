@@ -1,13 +1,14 @@
-let checkType = function( x ) {
+let checkType = function(x) {
     const typeX = typeof x;
     if (typeX === 'string') {
-        return 'string';
+        return typeX;
     }
     if (typeX === 'number') {
         if (Number.isNaN(x)) {
             return undefined;
         } 
-        return 'number';
+
+        return typeX;
     }
     
     return undefined;   

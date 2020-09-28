@@ -1,7 +1,6 @@
 let isArrIdentical = function(arr) {
-    let firstElement = arr.shift();
     for (let elem of arr) {
-        if (elem != firstElement) {
+        if (elem !== arr[0]) {
             return false;
         }
     }
