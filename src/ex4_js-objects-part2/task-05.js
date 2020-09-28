@@ -1,4 +1,4 @@
-let findStr = (subStr, str) => {
+let findStr = (str, subStr) => {
     return str.includes(subStr);
 };
 
