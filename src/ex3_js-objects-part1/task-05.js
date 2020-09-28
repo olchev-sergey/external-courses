@@ -1,5 +1,6 @@
-let f = (obj) => {
+let copyObj = (obj) => {
     return Object.assign({}, obj);
+    // return {...obj}; //other method, but eslint ban it
 };
 
-module.exports = f;
+module.exports = copyObj;

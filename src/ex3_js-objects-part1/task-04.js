@@ -1,11 +1,11 @@
 /*eslint no-param-reassign: "error"*/
-let f = (str, obj) => {
-    if (!obj.hasOwnProperty(str)) {  
-        obj[str] = 'new';
+let checkAndAddKeyInObj = (key, obj) => {
+    if (!obj.hasOwnProperty(key)) {  
+        obj[key] = 'new';
     }    
 
     return obj; 
 };
 
 
-module.exports = f;
+module.exports = checkAndAddKeyInObj;

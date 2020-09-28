@@ -1,4 +1,4 @@
-let f = function(obj) {
+let printObj = function(obj) {
     for (const key in obj) {
       if (obj.hasOwnProperty(key)) {
         console.log(key + ':' + obj[key]);
@@ -8,4 +8,4 @@ let f = function(obj) {
     return;
 };
 
-module.exports = f;
+module.exports = printObj;

@@ -1,5 +1,5 @@
-let f = (str, obj) => {
-    return str in obj;
+let checKeyInObj = (key, obj) => {
+    return key in obj;
 };
 
-module.exports = f;
+module.exports = checKeyInObj;
