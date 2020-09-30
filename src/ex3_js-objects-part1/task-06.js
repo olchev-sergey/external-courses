@@ -1,6 +1,7 @@
 /*eslint no-param-reassign: "error"*/
 function deepCloneObj (obj) {
     const target = Array.isArray(obj) ? [] : {};
+    
     for (const key in obj) {        
         if (typeof obj[key] === 'object') {
             target[key] = deepCloneObj(obj[key]);
