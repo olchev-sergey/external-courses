@@ -1,4 +1,4 @@
-const maxValue = function(arr) {
+const maxValue = function (arr) {
     return Math.max(...arr);
 };
 

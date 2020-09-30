@@ -1,29 +1,23 @@
-const isSimpleNum = function(num) {
+const isSimpleNum = function (num) {
     if (num === 0 || num === 1) {
-        return null;
+        return 'ни простое и не составное';
     }
 
     for (let i = 2; i < num / 2; i++) {
         if (num % i === 0) {
-            return false;
+            return `Число ${num} - составное число`;
         }
     }
 
-    return true;
+    return `Число ${num} - простое число`;
 };
 
-const f = function(num) {
-    if (num > 1000) {
+const f = function (num) {
+    if (num > 1000 || num < 0) {
         return 'Данные неверны';
     }
-    let answer = '';
-    if (isSimpleNum(num) === null) {
-        answer = 'ни простое и не составное';
-    } else {
-        answer = isSimpleNum(num) ? 'простое' : 'составное';
-    }
 
-    return `Число ${num} - ${answer} число`;
+    return isSimpleNum(num);
 };
 
 module.exports = isSimpleNum;
