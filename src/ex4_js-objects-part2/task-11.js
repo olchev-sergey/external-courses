@@ -1,5 +1,5 @@
 const countLetter = (str) => {
-    let count = {};    
+    const count = {};    
 
     for (const letter of str) {
         if (letter in count) {
