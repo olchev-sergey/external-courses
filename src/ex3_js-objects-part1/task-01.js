@@ -1,4 +1,4 @@
-let person = {};
+const person = {};
 person.name = 'Sergey';
 // one more way to create key and value, but eslint ban it
 // person['age'] = 19;

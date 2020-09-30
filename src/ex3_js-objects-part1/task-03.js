@@ -1,4 +1,4 @@
-let checKeyInObj = (key, obj) => {
+const checKeyInObj = (key, obj) => {
     return key in obj;
 };
 
