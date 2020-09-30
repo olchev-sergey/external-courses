@@ -1,5 +1,5 @@
-const checKeyInObj = (key, obj) => {
+const checkKeyInObj = (key, obj) => {
     return key in obj;
 };
 
-module.exports = checKeyInObj;
+module.exports = checkKeyInObj;
