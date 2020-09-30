@@ -1,4 +1,4 @@
-let printArr = function(arr) {
+const printArr = function(arr) {
     arr.forEach(element => {
         console.log(element);
     });

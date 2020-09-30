@@ -1,4 +1,4 @@
-let isSimpleNum = function(num) {
+const isSimpleNum = function(num) {
     if (num === 0 || num === 1) {
         return null;
     }
@@ -12,7 +12,7 @@ let isSimpleNum = function(num) {
     return true;
 };
 
-let f = function(num) {
+const f = function(num) {
     if (num > 1000) {
         return 'Данные неверны';
     }

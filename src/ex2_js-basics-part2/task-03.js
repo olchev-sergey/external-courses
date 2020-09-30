@@ -1,4 +1,4 @@
-let oddEvenZeroCount = function(arr) {
+const oddEvenZeroCount = function(arr) {
     let oddNumCount = 0;
     let evenNumCount = 0;
     let zeroNumCount = 0;

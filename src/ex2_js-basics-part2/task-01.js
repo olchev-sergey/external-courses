@@ -1,4 +1,4 @@
-let checkType = function(x) {
+const checkType = function(x) {
     const typeX = typeof x;
     if (typeX === 'string') {
         return typeX;

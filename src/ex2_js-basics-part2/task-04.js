@@ -1,4 +1,4 @@
-let isArrIdentical = function(arr) {
+const isArrIdentical = function(arr) {
     for (let elem of arr) {
         if (elem !== arr[0]) {
             return false;
