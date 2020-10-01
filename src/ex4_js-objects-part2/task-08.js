@@ -11,5 +11,4 @@ const toCamelCase = (str) => {
     return camelCaseStr[0].toLowerCase() + camelCaseStr.slice(1,camelCaseStr.length);
 };
 
-module.exports = toUpFirst;
 module.exports = toCamelCase;
