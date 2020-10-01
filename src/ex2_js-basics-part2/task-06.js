@@ -12,7 +12,7 @@ const isSimpleNum = function (num) {
     return `Число ${num} - простое число`;
 };
 
-const f = function (num) {
+const isSimpleNumAnswer = function (num) {
     if (num > 1000 || num < 0) {
         return 'Данные неверны';
     }
@@ -20,5 +20,4 @@ const f = function (num) {
     return isSimpleNum(num);
 };
 
-module.exports = isSimpleNum;
-module.exports = f;
+module.exports = isSimpleNumAnswer;
