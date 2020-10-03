@@ -5,10 +5,9 @@ const deepCloneObj = (obj) => {
     for (const key in obj) {        
         if (typeof obj[key] === 'object') {
             target[key] = deepCloneObj(obj[key]);
-            continue;
-        }
-        
-        target[key] = obj[key];
+        } else {
+            target[key] = obj[key];
+        }        
     }
 
     return target;
