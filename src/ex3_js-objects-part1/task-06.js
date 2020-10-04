@@ -1,4 +1,3 @@
-/*eslint no-param-reassign: "error"*/
 const deepCloneObj = (obj) => {
     const target = Array.isArray(obj) ? [] : {};
     
