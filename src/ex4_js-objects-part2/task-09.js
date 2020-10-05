@@ -1,9 +1,9 @@
 const insertStr = (str, subStr, pos) => {
     const words = str.split(' ');
 
-    words.splice(pos + 1, 0, subStr);
+    const result = [].concat(words.slice(0, pos + 1), subStr, words.slice(pos + 1));
 
-    return words.join(' ');
+    return result.join(' ');
 };
 
 module.exports = insertStr;
