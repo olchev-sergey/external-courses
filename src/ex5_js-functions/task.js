@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 class Calculator {
     constructor (){
         this.result = 0;
@@ -9,19 +11,53 @@ class Calculator {
 
     reset() {
         this.result = 0;
+
         return this.result;
     }
 
     add(num) {
+        num = num || 0;       
+
         this.result += num;
-        return this.result;
+
+        const f = (num2) => {
+            num2 = num2 || 0;
+
+            this.result += num2;
+
+            return f;
+        };
+
+        f.toString = () => {
+            return this.result;
+        };
+        
+        return f;
+
     }
 
     subtract(num) {
+        num = num || 0;
+
         this.result -= num;
+
+        const f = (num2) => {
+            num2 = num2 || 0;
+
+            this.result -= num2;
+
+            return f;
+        };
+
+        f.toString = () => {
+            return this.result;
+        };
+        
+        return f;
     }
     
 }
 
-const calc = new Calculator();
+
+const calculator = new Calculator();
 
