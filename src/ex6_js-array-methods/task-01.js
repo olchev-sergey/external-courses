@@ -1,6 +1,6 @@
 const slice = (array, begin, end) => {
-    const start = begin || 0;
-    const toEnd = end || array.length;
+    let start = begin || 0;
+    let toEnd = end || array.length;
 
     if (start < 0) {
         start = array.length + start;
