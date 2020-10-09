@@ -3,7 +3,6 @@ const deleteSpaces = (str) => {
     const end = str[str.length - 1] === ' ' ? -1 : undefined;
 
     return str.slice(start, end);
-
 };
 
 module.exports = deleteSpaces;
