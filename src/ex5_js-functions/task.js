@@ -1,107 +1,49 @@
 /* eslint-disable no-param-reassign */
 
 class Calculator {
-    constructor () {
-        this.result = 0;
-    }
-
-    getResult() {
-        return this.result;
-    }
-
-    reset() {
+    constructor() {
         this.result = 0;
 
-        return this.result;
-    }
-
-    add(num) {
-        num = num || 0;       
-
-        this.result += num;
-
-        const f = (num2) => {
-            num2 = num2 || 0;
-
-            this.result += num2;
-
-            return f;
-        };
-
-        f.toString = () => {
+        this.getResult = () => {
             return this.result;
         };
-        
-        return f;
 
-    }
+        this.reset = () => {
+            this.result = 0;
 
-    subtract(num) {
-        num = num || 0;
-
-        this.result -= num;
-
-        const f = (num2) => {
-            num2 = num2 || 0;
-
-            this.result -= num2;
-
-            return f;
-        };
-
-        f.toString = () => {
             return this.result;
         };
-        
-        return f;
+
+        this.add = (num) => {
+            num = num || 0;
+            this.result += num;
+
+            return this.add;
+        };
+
+        this.subtract = (num) => {
+            num = num || 0;
+            this.result -= num;
+
+            return this.subtract;
+        };
+
+        this.divide = (num) => {
+            num = num || 1;
+            this.result /= num;
+
+            return this.divide;
+        };
+
+        this.multiply = (num) => {
+            num = num || 1;
+            this.result *= num;
+
+            return this.multiply;
+        };
     }
-
-    divide(num) {
-        num = num || 0;
-
-        this.result /= num;
-
-        const f = (num2) => {
-            num2 = num2 || 0;
-
-            this.result /= num2;
-
-            return f;
-        };
-
-        f.toString = () => {
-            return this.result;
-        };
-        
-        return f;
-    }
-
-    multiply(num) {
-        num = num || 0;
-
-        this.result *= num;
-
-        const f = (num2) => {
-            num2 = num2 || 0;
-
-            this.result *= num2;
-
-            return f;
-        };
-
-        f.toString = () => {
-            return this.result;
-        };
-        
-        return f;
-    }
-    
-    
 }
 
 const calc = new Calculator();
-calc.add(1)(2);
-calc.multiply(2)(5);
-console.log(calc.getResult());  
 
-module.exports = Calculator;
+module.exports = calc;
