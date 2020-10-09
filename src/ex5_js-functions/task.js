@@ -99,4 +99,9 @@ class Calculator {
     
 }
 
+const calc = new Calculator();
+calc.add(1)(2);
+calc.multiply(2)(5);
+console.log(calc.getResult());  
+
 module.exports = Calculator;
