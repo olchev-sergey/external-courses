@@ -19,5 +19,4 @@ const slice = (array, begin, end) => {
     return copyArr;
 };
 
-
 module.exports = slice;
