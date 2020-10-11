@@ -14,29 +14,25 @@ class Calculator {
             return this.result;
         };
 
-        this.add = (num) => {
-            num = num || 0;
+        this.add = (num = 0) => {
             this.result += num;
 
             return this.add;
         };
 
-        this.subtract = (num) => {
-            num = num || 0;
+        this.subtract = (num = 0) => {
             this.result -= num;
 
             return this.subtract;
         };
 
-        this.divide = (num) => {
-            num = num || 1;
+        this.divide = (num = 1) => {
             this.result /= num;
 
             return this.divide;
         };
 
-        this.multiply = (num) => {
-            num = num || 1;
+        this.multiply = (num = 1) => {
             this.result *= num;
 
             return this.multiply;
