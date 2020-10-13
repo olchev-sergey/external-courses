@@ -6,6 +6,8 @@ const slice = (array, begin, end) => {
         start = array.length + start;
     }
 
+    start = start < 0 ? 0 : start;
+
     if (toEnd < 0) {
         toEnd = array.length + toEnd;
     }
