@@ -1,0 +1,57 @@
+* {
+    box-sizing: border-box;
+}
+
+html, 
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+h1 {
+    margin: 0;
+}
+
+.wrapper {
+    min-height: 100%;
+    background: #bdc3c7;
+}
+
+.lists .orderred-list {
+    background: rgb(192, 57, 43);
+    padding-left: 30px;
+    font-size: 1.5em;
+    font-family: 'Sansita Swashed';
+    text-align: center;
+    word-spacing: 10px;
+    letter-spacing: 10px;
+}
+
+.lists .unorderred-list {
+    background: rgba(192, 57, 43, 0.7);
+    width: 50vw;
+    height: 33vh;
+}
+
+.lists .background-green {
+    background-color: green;
+}
+
+.lists .list-with-links {
+    background: url(https://coolbackgrounds.io/images/backgrounds/index/ranger-4df6c1b6.png) center  no-repeat;
+    font-size: 1.5rem;
+}
+
+.image img {
+    width: 200px;
+}
+
+.pre-tag pre {
+    position: relative;
+    top: 0;
+    left: -170px;    
+}
+
