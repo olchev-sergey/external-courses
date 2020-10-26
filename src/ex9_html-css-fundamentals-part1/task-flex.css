@@ -26,7 +26,6 @@ header, article, section, .module {
 main {
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .main-side {
@@ -34,5 +33,13 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: flex-start;    
+    align-items: flex-start;   
+}
+
+.main-side section {
+    flex-basis: 70%;
+}
+
+.main-side aside {
+    flex-basis: 30%;
 }
