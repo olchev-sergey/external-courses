@@ -1,0 +1,45 @@
+body {
+    padding: 30px;
+}
+
+header {
+    background: lightblue;
+}
+
+section {
+    background: lightgreen;
+}
+
+article {
+    background: white;
+    margin: 0 0 1rem 0;
+}
+
+aside {
+    background: pink;
+}
+
+header, article, section, .module {
+    padding: 1rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-side {
+    background-color: rgb(218, 214, 214);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;   
+}
+
+.main-side section {
+    flex-basis: 70%;
+}
+
+.main-side aside {
+    flex-basis: 30%;
+}
