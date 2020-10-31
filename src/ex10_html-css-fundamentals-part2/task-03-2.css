@@ -44,10 +44,10 @@
     display: inline-block;
     padding-right: 5px;
 }
-
-.table td:first-child span::first-letter{
-    text-transform: uppercase;
+.table td:first-child {
+    text-transform: capitalize;
 }
+
 
 .table tr td:last-child::before {
     content: '$';
