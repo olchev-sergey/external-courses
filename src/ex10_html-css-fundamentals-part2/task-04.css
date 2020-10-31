@@ -31,13 +31,15 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 9vh 0;
 }
 
 .header-logo {
     background: url(./task-04-img/logoback.png) center / cover;
-    width: 20.15vw;
-    height: 12vh;
+    /* width: 20.15vw; */
+    width: 350px;
+    height: 93px;
+    margin: 61px 0;
+
     cursor: pointer;
 }
 
@@ -47,7 +49,7 @@ body {
     height: 100%;
     display: grid;
     place-items: center;
-    font-size: 2.8vw;
+    font-size: 41px;
 }
 
 .header-contact {
@@ -84,7 +86,7 @@ body {
     height: 61px;
     padding: 30px 5px 0 5px;
     position: absolute;
-    bottom: 40px;
+    bottom: 20px;
     white-space: nowrap;
     background: url(./task-04-img/contact-message.svg) center / contain no-repeat;
     border-radius: 10px;
@@ -97,8 +99,8 @@ body {
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-    height: 12vh;
     position: relative;
+    height: 86px;
 }
 
 .header__bottom::before {
@@ -516,13 +518,19 @@ body {
 
 
     .header__top {
-        margin: 0;
+        /* margin: 31px 0; */
         height: 100%;
         position: absolute;
         top: 0;
         z-index: 2;
         left: 50%;
         transform: translateX(-50%);
+    }
+
+    .header-logo {
+        /* margin: 31px 0; */
+        height: 64px;
+        width: 155px;
     }
 
     .main-slider__slider-wrapper {
