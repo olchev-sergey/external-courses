@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.wrapper {
+    min-height: 100%;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+}
+
+.field {
+    position: relative;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.field label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all .2s linear;
+    color: #999;
+    font-size: 10px;
+}
+
+.form__input-title {
+    margin: 15px 0px 0px 0px;
+    border: 1px solid #999;
+    padding: 3px 2px;
+    caret-color: blue;
+}
+
+.form__input-title:invalid + label{
+    top: 3px;
+    opacity: 0;
+}
+
+.form__input-title:valid + label {
+    opacity: 1;
+    top: 2px;
+}
+
+.form__input-title:focus {
+    outline: none;
+}
+
+
+.form__input-title:focus + label {
+    color: blue;
+}
