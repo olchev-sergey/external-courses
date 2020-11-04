@@ -169,12 +169,6 @@ body {
     background-color: rgb(173, 168, 168);
 }
 
-.main div {
-    background-color: #000;
-    width: 250vw;
-    height: 50px;
-}
-
 .footer {
     background: #0067a3;
     padding: 0 24px 0 67px;
