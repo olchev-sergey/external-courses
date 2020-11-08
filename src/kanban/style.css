@@ -23,8 +23,7 @@ body {
     grid-template-rows: 55px 1fr 55px;
     font-family: "Roboto", sans-serif;
     font-size: 18px;
-
-
+    overflow: hidden;
 }
 
 .header {
@@ -32,7 +31,7 @@ body {
     background-color: #0067a3;
     color: #fff;
     display: grid;
-    grid-template-columns: 50px 331px 1fr 181px 64px;
+    grid-template-columns: 50px 331px 1fr 200px 64px;
 }
 
 .header-burger,
@@ -87,6 +86,7 @@ body {
 
 .create-btn-block {
     grid-area: 1 / 4 / 2 / 5;
+    padding-right: 25px;
 }
 
 .create-btn {
@@ -114,16 +114,20 @@ body {
     text-align: center;
 }
 
+/* start profile styles */
+
 .profile-block {
     grid-area: 1 / -1 / 2 / -2;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    position: relative;
 }
 
 .profile-avatar-block {
     background-color: #fff;
     width: 40px;
     height: 40px;
+    margin-right: 5px;
     border-radius: 50%;
     position: relative;
     cursor: pointer;
@@ -137,6 +141,44 @@ body {
     fill: #000;
 }
 
+.profile-ul {
+    position: absolute;
+    top: 55px;
+    right: -10px;
+    width: 200px;
+    margin: 0;
+    padding: 0;
+    z-index: 3;
+}
+
+.profile-ul-active {
+    background: #fff;
+    color: #000;
+    animation-name: ulMove;
+    animation-duration: 1.5s;
+}
+
+@keyframes ulMove {
+    from {
+        transform: translateX(100%);
+    }
+}
+
+.profile-ul-active li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+    padding: 0 5px 0 0;
+}
+
+.profile-ul-active li:hover {
+    background: rgb(202, 199, 199);
+    border-left: 7px solid #000;
+}
+
+/* end profile styles */
+
 .arrow-down {
     cursor: pointer;
     border: solid #fff;
@@ -149,6 +191,7 @@ body {
     background: #0079bf;
     overflow-x: scroll;
 }
+
 
 .main::-webkit-scrollbar-track {
     border-radius: 10px;
@@ -198,3 +241,4 @@ body {
 
 .board-info-text {
 }
+
