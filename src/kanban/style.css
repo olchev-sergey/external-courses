@@ -34,10 +34,7 @@ body {
     grid-template-columns: 50px 331px 1fr 200px 64px;
 }
 
-.header-burger,
-.header__title,
-.create-btn-block,
-.profile-block {
+.flex-center {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,14 +63,14 @@ body {
     position: relative;
 }
 
-.header-burger__inner div {
+.header-burger__line {
     width: 20px;
     height: 2px;
     background-color: #fff;
     position: relative;
 }
 
-.header-burger__inner div svg {
+.header-burger__line svg {
     position: absolute;
     top: -3px;
     left: -10px;
