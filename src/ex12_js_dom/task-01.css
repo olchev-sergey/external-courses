@@ -18,12 +18,9 @@ body {
 
 .slider {
     display: flex;
-    /* background-color: lightgray; */
-    /* justify-content: center; */
-    /* align-items: center; */
     height: 400px;
     width: 600px;
-    /* overflow: hidden; */
+    position: relative;
 }
 
 .slider > *:focus {
@@ -36,19 +33,19 @@ body {
     flex: 1 0 auto;
     height: 100%;   
     overflow: hidden;
-    /* transition: 1s all; */
+    position: relative;
 }
 
 .slider-image {
     height: 100%;
+    width: 100%;
+    background-image: url(./asset/EPAM_office.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    transition: background 1s, transform 1s;
-}
-
-.slider-image:hover {
-    transform: scale(1.1);
+    transition: transform 1s;
+    position: absolute;
+    z-index: -1;
 }
 
 .arrow {
