@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+    <link rel="stylesheet" href="task-02.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <form action="http://httpbin.org/get" method="GET">
+
+            <fieldset>
+                <legend>Personal data</legend>
+
+                <label for="surname">Surname</label>
+                <input type="text" name="surname" id="surname" minlength="3" maxlength="20" placeholder="Your name" required> 
+                <br>
+
+                <label for="firstName">First Name</label>
+                <input type="text" name="firstName" id="firstName" maxlength="20" placeholder="Your name">
+                <br>
+
+                <label for="middleName">Middle Name</label>
+                <input type="text" name="middleName" id="middleName" placeholder="Your middle name">
+                <br>
+
+                You are
+                <label>
+                    <input type="radio" name="gender" value="male" required> male
+                </label>
+
+                <label>
+                    <input type="radio" name="gender" value="female"> female
+                </label>
+                <br>
+
+                <label>
+                    Age <input type="number" min="18" max="101" step="1" placeholder="age">
+                </label>
+                <br>
+
+                <label>
+                    Country of Residence
+                    <select name="country">
+                        <option value="Russia">Russia</option>
+                        <option value="England">England</option>
+                        <option value="USA">USA</option>
+                        <option value="China">China</option>
+                    </select>
+                </label>
+                <br>
+
+                City
+                <label>
+                    <input type="checkbox" name="city" value="Ryazan" checked> Ryazan
+                </label>
+
+                <label>
+                    <input type="checkbox" name="city" value="Moscow"> Moscow
+                </label>
+                <br>
+
+                <label>
+                    Photography <input type="file" name="file">
+                </label>
+
+                <hr>
+
+                <label>
+                    Titile
+                    <select name="title" multiple size="8">
+                        <optgroup label="Techologies">
+                            <option value="webMaster">Web Master</option>
+                            <option value="databaseAdmin">Database Administrator</option>
+                            <option value="computerDesign">Computer-aided design</option>
+                        </optgroup>
+                        
+                        <optgroup label="Finance">
+                            <option value="economicPlanning">Economic Planning</option>
+                            <option value="managementAccount">Management accounting</option>
+                            <option value="budgetPlanning">Budgeting and planning</option>
+                        </optgroup>
+                    </select>
+                </label>
+                <br>
+
+                <label>
+                    Salary <input type="range"> 
+                </label>
+                <br>
+
+                <textarea name="aboutInfo" cols="50" rows="10" placeholder="Tell us about yourself"></textarea>
+            </fieldset>
+
+            <fieldset>
+                <legend>Contact Information</legend>
+                
+                <label for="site">Site</label>
+                <input type="text" name="site" id="site" placeholder="Your site">
+                <br>
+
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="email">
+                <br>
+
+                <label for="phone">Phone</label>
+                <input type="tel" name="phone" id="phone" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="xxx-xxx-xxxx">
+                <br>
+            </fieldset>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder=" " required>
+            <br>
+
+            <input type="submit" value="Отправить">
+            <input type="reset">
+
+        </form>
+    </div>
+    
+</body>
+</html>
