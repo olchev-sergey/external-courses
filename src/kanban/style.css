@@ -148,6 +148,32 @@ body {
     z-index: 3;
 }
 
+.profile-ul-active {
+    background: #fff;
+    color: #000;
+    animation-name: ulMove;
+    animation-duration: 1.5s;
+}
+
+@keyframes ulMove {
+    from {
+        transform: translateX(100%);
+    }
+}
+
+.profile-ul-active li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+    padding: 0 5px 0 0;
+}
+
+.profile-ul-active li:hover {
+    background: rgb(202, 199, 199);
+    border-left: 7px solid #000;
+}
+
 .arrow-down {
     cursor: pointer;
     border: solid #fff;
