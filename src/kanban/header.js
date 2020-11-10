@@ -14,17 +14,19 @@ const createUlFromArr = (arrStr) => {
 const profileBlock = document.querySelector('.profile-block');
 const arrowElement = document.querySelector('.arrow-down');
 
-const profileUlList = createUlFromArr(['My account', 'My tasks', 'Log out']);
-profileUlList.classList.add('profile-ul');
 
 profileBlock.addEventListener('click', () => {
-    profileUlList.classList.toggle('profile-ul-active');
+    profileBlock.classList.toggle('profile-block-active');
 
-    if (profileUlList.classList.contains('profile-ul-active')) {
+    if (profileBlock.classList.contains('profile-block-active')) {
+        const profileUlList = createUlFromArr(['My account', 'My tasks', 'Log out']);
+        profileUlList.classList.add('profile-ul');
+        profileUlList.classList.add('profile-ul-active');
+
         profileBlock.append(profileUlList);
         arrowElement.style.transform = 'rotate(-135deg)';        
     } else {
-        profileUlList.remove();
+        profileBlock.lastChild.remove();
         arrowElement.style.transform = '';
     }
 
