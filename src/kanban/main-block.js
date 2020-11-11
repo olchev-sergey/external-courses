@@ -1,6 +1,6 @@
 const dataMock = [
     {
-        title: 'backlog',
+        title: 'Backlog',
         issues: [
             {
                 id: 'task1',
@@ -9,6 +9,10 @@ const dataMock = [
             {
                 id: 'task2',
                 name: 'Sprint bugfix',
+            },
+            {
+                id: 'task3',
+                name: 'Sprdsdsddsint bugfix',
             },
         ],
     },
@@ -83,8 +87,10 @@ const dataMock = [
 
 const getDataValueArr = (dataMock) => {
     const result = [];
+
     dataMock.forEach((taskBlock) => {
         result.push([]);
+        
         taskBlock.issues.forEach((issue) => {
             result[result.length - 1].push(issue.name);
         });
@@ -93,139 +99,43 @@ const getDataValueArr = (dataMock) => {
     return result;
 };
 
-// console.log(getDataValueArr(dataMock));
-const createUl = () => {
-    const ul = document.createElement('ul');
-    ul.classList.add('task-block__task-list');
+const createUl = constructorCreateUl('task-block__task-list');
+const createLi = constructorCreateLi('task-block__list-item');
+const createInput = constructorCreateInput('task-block__input');
+const createSelect = constructorCreateSelect('task-block__select');
 
-    return ul;
-};
-
-const createLi = () => {
-    const li = document.createElement('li');
-    li.classList.add('task-block__list-item');
-
-    return li;
-};
-
-const taskBlockUlArr = document.querySelectorAll('.task-block__task-list');
 const ulValueArr = getDataValueArr(dataMock);
-
-for (let i = 0; i < taskBlockUlArr.length; i++) {
-    ulValueArr[i].forEach((value) => {
-        const li = createLi();
-        const textNode = document.createTextNode(value);
-
-        li.append(textNode);
-        taskBlockUlArr[i].append(li);
-    });
-}
-
-const getUlItemValue = (ul) => {
-    const valueArr = [];
-
-    for (const ulItem of ul.children) {
-        valueArr.push(ulItem.innerHTML);
-    }
-
-    return valueArr;
-};
 
 const taskBlockArr = document.querySelectorAll('.task-block');
 
-class TaskBlock {
-    constructor(taskBlock) {
-        this.taskBlock = taskBlock;
-        this.title = taskBlock.children[0];
-        this.ul = taskBlock.children[1];
-        this.addBtn = taskBlock.children[2];
-
-        this.liArr = this.ul.children;
-        this.liValueArr = getUlItemValue(this.ul);
-    }
-}
-
 const backlogBlock = new TaskBlock(taskBlockArr[0]);
-console.log(backlogBlock);
+backlogBlock.setLiValueArr(ulValueArr[0]);
+backlogBlock.updateView();
+backlogBlock.initAddBtnClick();
+backlogBlock.initDataMockListener(dataMock[0].issues);
+backlogBlock.initDeleteLiByDblClick();
 
+const readyBlock = new TaskBlockWithSelect(taskBlockArr[1], backlogBlock);
+readyBlock.setLiValueArr(ulValueArr[1]);
+readyBlock.updateView();
+readyBlock.initAddBtnClick();
+readyBlock.initDataMockListener(dataMock[1].issues);
+readyBlock.initDeleteLiByDblClick();
 
+const progressBlock = new TaskBlockWithSelect(taskBlockArr[2], readyBlock);
+progressBlock.setLiValueArr(ulValueArr[2]);
+progressBlock.updateView();
+progressBlock.initAddBtnClick();
+progressBlock.initDataMockListener(dataMock[2].issues);
+progressBlock.initDeleteLiByDblClick();
 
-const createInput = () => {
-    const input = document.createElement('input');
-    input.classList.add('task-block__input');
+const finishedBlock = new TaskBlockWithSelect(taskBlockArr[3], progressBlock);
+finishedBlock.setLiValueArr(ulValueArr[3]);
+finishedBlock.updateView();
+finishedBlock.initAddBtnClick();
+finishedBlock.initDataMockListener(dataMock[3].issues);
+finishedBlock.initDeleteLiByDblClick();
 
-    return input;
-};
+readyBlock.setNextBlock(progressBlock);
+progressBlock.setNextBlock(finishedBlock);
 
-
-
-const createSelect = (strArr) => {
-    const select = document.createElement('select');
-
-    for (const str of strArr) {
-        const option = document.createElement('option');
-        const textNode = document.createTextNode(str);
-        option.append(textNode);
-        select.append(option);
-    }
-
-    return select;
-};
-
-const addCardBtnArr = document.querySelectorAll('.task-block__add-btn');
-
-const addCardBtn = addCardBtnArr[0];
-const taskBlockList = document.querySelector('.task-block__task-list');
-
-const readyAddBtn = addCardBtnArr[1];
-
-taskBlockList.addEventListener('dblclick', (e) => {
-    // e.target.innerHTML = '';
-    const target = e.target;
-    // console.log(e.target);
-    // taskBlockList.remove(e.target);
-    target.parentNode.removeChild(target);
-    console.log(taskBlockList.children);
-});
-
-addCardBtn.addEventListener('click', (e) => {
-    const li = createLi();
-    const input = createInput();
-    li.append(input);
-    taskBlockList.append(li);
-    input.focus();
-
-    input.addEventListener('change', () => {
-        const textNode = document.createTextNode(input.value);
-        li.append(textNode);
-        input.remove();
-    });
-
-    input.addEventListener('blur', () => {
-        if (input.value === '') {
-            li.remove();
-            input.remove();
-        }
-    });
-
-}, false);
-
-readyAddBtn.addEventListener('click', (e) => {
-    const backlogValue = getUlItemValue(taskBlockList);
-    const select = createSelect(['your choose',...backlogValue]);
-    const li = createLi();
-    li.append(select);
-
-    const readyUl = readyAddBtn.parentNode.children[1];
-    console.log(backlogValue);
-    readyUl.append(li);
-    select.focus();
-
-
-    select.addEventListener('blur', () => {
-        const textNode = document.createTextNode(select.value);
-        li.append(textNode);
-        select.remove();
-    }, false);
-
-}, false);
