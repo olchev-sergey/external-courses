@@ -1,0 +1,76 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider {
+    display: flex;
+    height: 400px;
+    width: 600px;
+    position: relative;
+}
+
+.slider > *:focus {
+    outline: none;
+    border: 5px solid rgb(31, 177, 226);
+    border-radius: 3px;
+}
+
+
+.slider-image-wrapper {
+    flex: 1 0 auto;
+    height: 100%;   
+    overflow: hidden;
+    position: relative;
+}
+
+.slider-image {
+    height: 100%;
+    width: 100%;
+    background-image: url(./asset/EPAM_office.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: transform 1s;
+    position: absolute;
+    z-index: -1;
+}
+
+.bogus-image {
+    background-image: url(./asset/logo.png);
+    /* transform: translateX(100%); */
+    /* z-index: 1; */
+    z-index: -1;
+}   
+
+.arrow {
+    cursor: pointer;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;    
+}
+
+.arrow svg {
+    width: 24px;
+    height: 24px;
+}
+
+.arrow:hover {
+    fill: gray;
+    background-color: rgb(170, 164, 164);
+}
