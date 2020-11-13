@@ -14,7 +14,6 @@ const createUlFromArr = (arrStr) => {
 const profileBlock = document.querySelector('.profile-block');
 const arrowElement = document.querySelector('.arrow-down');
 
-
 profileBlock.addEventListener('click', () => {
     profileBlock.classList.toggle('profile-block-active');
 
@@ -26,7 +25,10 @@ profileBlock.addEventListener('click', () => {
         profileBlock.append(profileUlList);
         arrowElement.style.transform = 'rotate(-135deg)';        
     } else {
-        profileBlock.lastChild.remove();
+        profileBlock.lastChild.classList.remove('profile-ul-active');
+        profileBlock.lastChild.onanimationend = () => {
+            profileBlock.lastChild.remove();
+        };
         arrowElement.style.transform = '';
     }
 
