@@ -115,9 +115,9 @@ class TaskBlockWithSelect extends TaskBlock {
     }
 
     disableBtnListener(list) {
-        if (list.length === 0 && this.addBtn.getAttribute('disabled') == null) {
+        if (list.length === 0 && this.addBtn.getAttribute('disabled') === null) {
             this.addBtn.setAttribute('disabled', 'disabled');
-        } else if (list.length !== 0 && this.addBtn.getAttribute('disabled') == 'disabled') {
+        } else if (list.length !== 0 && this.addBtn.getAttribute('disabled') === 'disabled') {
             this.addBtn.removeAttribute('disabled');
         }
     }
