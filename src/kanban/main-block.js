@@ -136,6 +136,7 @@ finishedBlock.initAddBtnClick();
 finishedBlock.initDataMockListener(dataMock[3].issues);
 finishedBlock.initDeleteLiByDblClick();
 
+backlogBlock.setNextBlock(readyBlock);
 readyBlock.setNextBlock(progressBlock);
 progressBlock.setNextBlock(finishedBlock);
 

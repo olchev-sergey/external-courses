@@ -1,15 +1,19 @@
 class TaskBlock {
-
     constructor(taskBlock) {
         this.taskBlock = taskBlock;
         this.title = taskBlock.children[0];
         this.ul = taskBlock.children[1];
         this.addBtn = taskBlock.children[2];
 
+        this.nextBlock = null;
         this.dataMockArr = [];
         this.liArr = [];
         this.liValueArr = [];
-        this.titleText= this.title.children[0].innerText;
+        this.titleText= this.title.children[0].innerText;        
+    }
+
+    setNextBlock(nextBlock) {
+        this.nextBlock = nextBlock;
     }
 
     setLiValueArr(strArr) {
@@ -24,6 +28,10 @@ class TaskBlock {
         this.ul.addEventListener('dblclick', (e) => {
             const target = e.target;
             this.deleteLiItem(target);
+
+            if (this.nextBlock) {
+                this.nextBlock.disableBtnListener(this.liValueArr);
+            }
         }, false);
     }
 
@@ -57,6 +65,7 @@ class TaskBlock {
         this.addBtn.addEventListener('click', (e) => {
             const li = createLi();
             const input = createInput();
+
             li.append(input);
             this.ul.append(li);
             input.focus();
@@ -67,6 +76,10 @@ class TaskBlock {
                 const textNode = document.createTextNode(input.value);
                 li.append(textNode);
                 input.remove();
+
+                if (this.nextBlock) {
+                    this.nextBlock.disableBtnListener(this.liValueArr);
+                }
             });
 
             input.addEventListener('blur', () => {
@@ -76,7 +89,7 @@ class TaskBlock {
                 }
             });
         }, false);
-    }    
+    }  
 
     updateUl(strArr) {
         if (strArr) {
@@ -84,11 +97,13 @@ class TaskBlock {
         }
 
         deleteChildren(this.ul);
+
         this.liArr = [];
 
         this.liValueArr.forEach((str) => {
             const li = createLi();
             const textNode = document.createTextNode(str);
+
             li.append(textNode);
             this.liArr.push(li);
             this.ul.append(li);
@@ -107,11 +122,6 @@ class TaskBlockWithSelect extends TaskBlock {
 
         this.prevBlock = prevBlock;
         this.dependList = prevBlock.liValueArr;
-        this.nextBlock = null;
-    }
-
-    setNextBlock(nextBlock) {
-        this.nextBlock = nextBlock;
     }
 
     disableBtnListener(list) {
@@ -120,14 +130,6 @@ class TaskBlockWithSelect extends TaskBlock {
         } else if (list.length !== 0 && this.addBtn.getAttribute('disabled') === 'disabled') {
             this.addBtn.removeAttribute('disabled');
         }
-    }
-
-    initDeleteLiByDblClick() {
-        this.ul.addEventListener('dblclick', (e) => {
-            const target = e.target;
-            this.deleteLiItem(target);
-            this.nextBlock.disableBtnListener(this.liValueArr);
-        }, false);
     }
 
     initAddBtnClick() {
@@ -140,11 +142,15 @@ class TaskBlockWithSelect extends TaskBlock {
             const lastFocusedElement = document.activeElement;
             select.focus();
 
-            select.addEventListener('change', () => {
+            select.addEventListener('change', (e) => {
                 this.liValueArr.push(select.value);
                 this.addData(select.value);
+
+                console.log(e);
+
                 const textNode = document.createTextNode(select.value);
                 const selectIndex = select.selectedIndex;
+
                 li.append(textNode);
                 select.remove();
 
@@ -160,10 +166,10 @@ class TaskBlockWithSelect extends TaskBlock {
             }, false);
 
             select.addEventListener('blur', () => {
-                    if (select.selectedIndex === 0) {
-                        li.remove();
-                        select.remove();
-                    }               
+                if (select.selectedIndex === 0) {
+                    li.remove();
+                    select.remove();
+                }               
             }, false);
         }, false);
     }
