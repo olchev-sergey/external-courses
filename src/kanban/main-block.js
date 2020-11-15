@@ -113,28 +113,24 @@ backlogBlock.setLiValueArr(ulValueArr[0]);
 backlogBlock.updateView();
 backlogBlock.initAddBtnClick();
 backlogBlock.initDataMockListener(dataMock[0].issues);
-backlogBlock.initDeleteLiByDblClick();
 
 const readyBlock = new TaskBlockWithSelect(taskBlockArr[1], backlogBlock);
 readyBlock.setLiValueArr(ulValueArr[1]);
 readyBlock.updateView();
 readyBlock.initAddBtnClick();
 readyBlock.initDataMockListener(dataMock[1].issues);
-readyBlock.initDeleteLiByDblClick();
 
 const progressBlock = new TaskBlockWithSelect(taskBlockArr[2], readyBlock);
 progressBlock.setLiValueArr(ulValueArr[2]);
 progressBlock.updateView();
 progressBlock.initAddBtnClick();
 progressBlock.initDataMockListener(dataMock[2].issues);
-progressBlock.initDeleteLiByDblClick();
 
 const finishedBlock = new TaskBlockWithSelect(taskBlockArr[3], progressBlock);
 finishedBlock.setLiValueArr(ulValueArr[3]);
 finishedBlock.updateView();
 finishedBlock.initAddBtnClick();
 finishedBlock.initDataMockListener(dataMock[3].issues);
-finishedBlock.initDeleteLiByDblClick();
 
 backlogBlock.setNextBlock(readyBlock);
 readyBlock.setNextBlock(progressBlock);
