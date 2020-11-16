@@ -311,6 +311,11 @@ body {
 .task-block__select {
     outline: none;
 }
+
+.task-block__drop-down {
+    background-color: blueviolet;
+}
+
 /* end main block styles */
 
 /* start footer styles */

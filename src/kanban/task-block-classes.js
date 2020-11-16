@@ -24,6 +24,19 @@ class TaskBlock {
         this.dataMockArr = linkData;
     }
 
+    dataToLocalStorage() {
+        const data = JSON.parse(localStorage.getItem('dataMock'));
+        const title = this.title.firstElementChild.innerText;
+        for (const element of data) {
+            if (element.title === title) {
+                element.issues = this.dataMockArr;
+                break;
+            }
+        }
+
+        localStorage.setItem('dataMock', JSON.stringify(data));
+    }
+
     initDeleteLiByDblClick() {
         this.ul.addEventListener('dblclick', (e) => {
             const target = e.target;
@@ -34,6 +47,8 @@ class TaskBlock {
             }
         }, false);
     }
+
+    
 
     deleteLiItem(li) {
         li.parentElement.removeChild(li);
@@ -59,6 +74,8 @@ class TaskBlock {
             id: `task${this.dataMockArr.length + 1}`,
             name: value,
         });
+
+        this.dataToLocalStorage();
     }
 
     initAddBtnClick() {
@@ -172,10 +189,5 @@ class TaskBlockWithSelect extends TaskBlock {
                 }               
             }, false);
         }, false);
-    }
-
-    updateView() {
-        super.updateView();
-        this.disableBtnListener(this.dependList);
     }
 }

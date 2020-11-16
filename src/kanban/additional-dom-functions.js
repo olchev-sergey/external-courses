@@ -43,6 +43,19 @@ const constructorCreateSelect = (className) => {
     };
 };
 
+const constructorCreateUlFromArr = (className) => {
+    return (strArr) => {
+        const ul = document.createElement('ul');
+        ul.classList.add(className);
+
+        for (const str of strArr) {
+            const li = document.createElement('li');
+            const textNode = document.createTextNode(str);
+            li.append(textNode);
+            ul.append(li);
+        }
+    }
+};
 
 const getUlItemValue = (ul) => {
     const valueArr = [];
@@ -59,4 +72,3 @@ const deleteChildren = (parent) => {
         parent.removeChild(parent.firstChild);
     }
 };
-

@@ -88,5 +88,3 @@ const dataMockStorage = [
 if (!localStorage.getItem('dataMock')) {
     localStorage.setItem('dataMock', JSON.stringify(dataMockStorage));
 }
-
-// localStorage.clear();
