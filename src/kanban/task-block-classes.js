@@ -147,43 +147,71 @@ class TaskBlockWithSelect extends TaskBlock {
     initAddBtnClick() {
         this.addBtn.addEventListener('click', (e) => {
             // const select = createSelect(['your choose', ...this.dependList]);
-            const dropDown = createSelect(['Choose', ...this.dependList]);
+            // const dropDown = createSelect(['Choose', ...this.dependList]);
             const li = createLi();
-            li.append(dropDown);
+            const dropDown = new DropDownList(['choose', ...this.dependList], 'task-block__drop-down', 'task-block__drop-down--hidden');
+            dropDown.init();
+            li.append(dropDown.getDropDownElement());
             this.ul.append(li);
+            
+            // const lastFocusedElement = document.activeElement;
+            dropDown.getDropDownElement().focus();
 
-            const lastFocusedElement = document.activeElement;
-            select.focus();
+            const func = () => {
 
-            select.addEventListener('change', (e) => {
-                this.liValueArr.push(select.value);
-                this.addData(select.value);
+            };
 
-                console.log(e);
+            
 
-                const textNode = document.createTextNode(select.value);
-                const selectIndex = select.selectedIndex;
+            dropDown.initListClick((value, index) => {
+                // console.log(this.liValueArr);
+                this.liValueArr.push(value);
+                this.addData(value);
 
+                console.log(value);
+                
+                const textNode = document.createTextNode(value);
                 li.append(textNode);
-                select.remove();
 
-                this.dependList.splice(selectIndex - 1, 1);
+                this.dependList.splice(index - 1, 1);
                 this.prevBlock.updateUl();
                 this.disableBtnListener(this.dependList);
 
                 if (this.nextBlock) {
                     this.nextBlock.disableBtnListener(this.liValueArr);
                 }
+            });
+            // select.focus();
 
-                lastFocusedElement.focus();
-            }, false);
+            // select.addEventListener('change', (e) => {
+            //     this.liValueArr.push(select.value);
+            //     this.addData(select.value);
 
-            select.addEventListener('blur', () => {
-                if (select.selectedIndex === 0) {
-                    li.remove();
-                    select.remove();
-                }               
-            }, false);
+            //     console.log(e);
+
+            //     const textNode = document.createTextNode(select.value);
+            //     const selectIndex = select.selectedIndex;
+
+            //     li.append(textNode);
+            //     select.remove();
+
+            //     this.dependList.splice(selectIndex - 1, 1);
+            //     this.prevBlock.updateUl();
+            //     this.disableBtnListener(this.dependList);
+
+            //     if (this.nextBlock) {
+            //         this.nextBlock.disableBtnListener(this.liValueArr);
+            //     }
+
+            //     lastFocusedElement.focus();
+            // }, false);
+
+            // select.addEventListener('blur', () => {
+            //     if (select.selectedIndex === 0) {
+            //         li.remove();
+            //         select.remove();
+            //     }               
+            // }, false);
         }, false);
     }
 }

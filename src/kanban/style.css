@@ -302,11 +302,6 @@ body {
     pointer-events: none;
 }
 
-/* .task-block__add-btn:disabled {
-    cursor: not-allowed;
-    text-decoration: line-through;
-} */
-
 .task-block__input {
     outline: none;
     border-radius: 2px;
@@ -323,6 +318,30 @@ body {
 
 .task-block__drop-down {
     background-color: blueviolet;
+}
+
+.task-block__drop-down > div {
+    cursor: pointer;
+    background-color: blueviolet;
+}
+
+.task-block__drop-down > div:first-child::after {
+    content: '!';
+}
+
+.task-block__drop-down > div:hover {
+    background-color: brown;
+}
+
+.task-block__drop-down > div:last-child {
+    position: absolute;
+    z-index: -1;
+    transform: translateY(-100%);
+}
+
+
+.task-block__drop-down--hidden > div:not(:first-child) {
+    display: none;
 }
 
 /* end main block styles */
