@@ -11,31 +11,44 @@ class Calculator {
         this.reset = () => {
             this.result = 0;
 
-            return this.result;
+            return this;
         };
 
         this.add = (num = 0) => {
             this.result += num;
 
-            return this.add;
+            return this;
         };
 
         this.subtract = (num = 0) => {
             this.result -= num;
 
-            return this.subtract;
+            return this;
         };
 
         this.divide = (num = 1) => {
             this.result /= num;
 
-            return this.divide;
+            return this;
         };
 
         this.multiply = (num = 1) => {
             this.result *= num;
 
-            return this.multiply;
+            return this;
+        };
+
+        this.setState = (state) => {
+            this.result = state;
+        };
+
+        this.fetchData = (callBack) => {
+            setTimeout(() => {
+                //emulate a request
+                //do something
+                callBack();
+                this.setState(500);
+            }, 1000);
         };
     }
 }
