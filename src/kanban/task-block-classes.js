@@ -4,20 +4,21 @@ class TaskBlock {
         this.title = taskBlock.children[0];
         this.ul = taskBlock.children[1];
         this.addBtn = taskBlock.children[2];
-
+        
         this.nextBlock = null;
         this.dataMockArr = [];
         this.liArr = [];
         this.liValueArr = [];
-        this.titleText= this.title.children[0].innerText;        
+        this.titleText = '';
     }
 
     setNextBlock(nextBlock) {
         this.nextBlock = nextBlock;
     }
 
-    setLiValueArr(strArr) {
-        this.liValueArr = strArr;
+    setBlockValues(dataInfo) {
+        this.titleText = dataInfo.title;
+        this.liValueArr = dataInfo.issues;
     }
 
     initDataMockListener(linkData) {
@@ -26,13 +27,11 @@ class TaskBlock {
 
     dataToLocalStorage() {
         const data = JSON.parse(localStorage.getItem('dataMock'));
-        const title = this.title.firstElementChild.innerText;
-        for (const element of data) {
-            if (element.title === title) {
-                element.issues = this.dataMockArr;
-                break;
-            }
-        }
+        const changedIndex = data.findIndex((element) => {
+            return element.title === this.titleText;
+        });
+
+        data[changedIndex].issues = this.dataMockArr;
 
         localStorage.setItem('dataMock', JSON.stringify(data));
     }
@@ -40,7 +39,10 @@ class TaskBlock {
     initDeleteLiByDblClick() {
         this.ul.addEventListener('dblclick', (e) => {
             const target = e.target;
-            this.deleteLiItem(target);
+
+            if (target.parentElement === this.ul) {
+                this.deleteLiItem(target);
+            }
 
             if (this.nextBlock) {
                 this.nextBlock.disableBtnListener(this.liValueArr);
@@ -51,20 +53,12 @@ class TaskBlock {
     
 
     deleteLiItem(li) {
-        li.parentElement.removeChild(li);
+        li.remove();
         this.deleteData(li.innerText);
     }
 
     deleteData(value) {
-        let index = -1;
-
-        for (let i = 0; i < this.dataMockArr.length; i++) {
-            if (this.dataMockArr[i].name === value) {
-                index = i;
-                break;
-            }
-        }
-
+        const index = this.dataMockArr.findIndex((element) => element.name === value);
         this.liValueArr.splice(index, 1);
         this.dataMockArr.splice(index, 1);
     }
@@ -113,17 +107,17 @@ class TaskBlock {
             this.liValueArr = [...strArr];
         }
 
-        deleteChildren(this.ul);
+        this.ul.innerHTML = '';
 
         this.liArr = [];
 
-        this.liValueArr.forEach((str) => {
+        this.liArr = this.liValueArr.map((str) => {
             const li = createLi();
             const textNode = document.createTextNode(str);
-
             li.append(textNode);
-            this.liArr.push(li);
             this.ul.append(li);
+
+            return li;
         });
     }
 
@@ -142,18 +136,20 @@ class TaskBlockWithSelect extends TaskBlock {
     }
 
     disableBtnListener(list) {
-        if (list.length === 0 && this.addBtn.getAttribute('disabled') === null) {
-            this.addBtn.setAttribute('disabled', 'disabled');
-        } else if (list.length !== 0 && this.addBtn.getAttribute('disabled') === 'disabled') {
-            this.addBtn.removeAttribute('disabled');
+
+        if (list.length === 0) {
+            this.addBtn.classList.toggle('task-block__add-btn--disabled')
+        } else if (this.addBtn.classList.contains('task-block__add-btn--disabled')) {
+            this.addBtn.classList.remove('task-block__add-btn--disabled');
         }
     }
 
     initAddBtnClick() {
         this.addBtn.addEventListener('click', (e) => {
-            const select = createSelect(['your choose', ...this.dependList]);
+            // const select = createSelect(['your choose', ...this.dependList]);
+            const dropDown = createSelect(['Choose', ...this.dependList]);
             const li = createLi();
-            li.append(select);
+            li.append(dropDown);
             this.ul.append(li);
 
             const lastFocusedElement = document.activeElement;

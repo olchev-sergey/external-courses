@@ -1,30 +1,11 @@
-const constructorCreateUl = (className) => {
 
+const constructorCreateElement = (tagName, className) => {
     return () => {
-        const ul = document.createElement('ul');
-        ul.classList.add('className');
+        const element = document.createElement(tagName);
+        element.classList.add(className);
 
-         return ul;
+        return element;
     };
-};
-
-
-const constructorCreateLi = (className) => {
-    return () => {
-        const li = document.createElement('li');
-        li.classList.add(className);
-
-        return li;
-    }
-};
-
-const constructorCreateInput = (className) => {
-    return () => {
-        const input = document.createElement('input');
-        input.classList.add(className);
-
-        return input;
-    }
 };
 
 const constructorCreateSelect = (className) => {
@@ -48,27 +29,33 @@ const constructorCreateUlFromArr = (className) => {
         const ul = document.createElement('ul');
         ul.classList.add(className);
 
-        for (const str of strArr) {
+        strArr.forEach((str) => {
             const li = document.createElement('li');
             const textNode = document.createTextNode(str);
             li.append(textNode);
             ul.append(li);
-        }
+        });
+
+        return ul;
     }
+};
+
+const constructorCreateDropDown = (className) => {
+
+    return (strArr) => {
+        const ul = constructorCreateUlFromArr(className)(strArr);
+        ul.addEventListener('click', (e) => {
+            console.log(e.target.textContent);
+        });
+
+        return ul;
+    };
+
 };
 
 const getUlItemValue = (ul) => {
-    const valueArr = [];
-
-    for (const ulItem of ul.children) {
-        valueArr.push(ulItem.innerHTML);
-    }
-
-    return valueArr;
+    return Array.prototype.map.call(ul.children, (child) => {
+        return child.innerHTML;
+    });
 };
 
-const deleteChildren = (parent) => {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
-};

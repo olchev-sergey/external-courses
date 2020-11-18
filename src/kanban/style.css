@@ -293,10 +293,19 @@ body {
     border-radius: 5px;
 }
 
-.task-block__add-btn:disabled {
+.task-block__add-btn--disabled {
     cursor: not-allowed;
     text-decoration: line-through;
 }
+
+.task-block__add-btn--disabled > * {
+    pointer-events: none;
+}
+
+/* .task-block__add-btn:disabled {
+    cursor: not-allowed;
+    text-decoration: line-through;
+} */
 
 .task-block__input {
     outline: none;
