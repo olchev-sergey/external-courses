@@ -317,7 +317,6 @@ body {
 }
 
 .task-block__drop-down {
-    /* background-color: blueviolet; */
 
 }
 
@@ -325,7 +324,6 @@ body {
     cursor: pointer;
     border-radius: 2px;
     padding-left: 3px;
-    /* background-color: blueviolet; */
 }
 
 .task-block__drop-down > div:not(:first-child)::before {

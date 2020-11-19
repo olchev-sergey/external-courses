@@ -179,70 +179,13 @@ class TaskBlockWithSelect extends TaskBlock {
                 dropDownList.dropDown.remove();
 
                 this.prevBlock.deleteData(dropDownList.value);
-                // this.dependList.splice(selectIndex - 1, 1);
-                // console.log(this.dependList);
                 this.prevBlock.updateUl();
                 this.disableBtnListener(this.dependList);
 
                 if (this.nextBlock) {
                     this.nextBlock.disableBtnListener(this.liValueArr);
                 }
-                
-                // lastFocusedElement.focus();
             });
-
-
-            
-
-            // dropDown.initListClick((value, index) => {
-            //     // console.log(this.liValueArr);
-            //     this.liValueArr.push(value);
-            //     this.addData(value);
-
-            //     console.log(value);
-                
-            //     const textNode = document.createTextNode(value);
-            //     li.append(textNode);
-
-            //     this.dependList.splice(index - 1, 1);
-            //     this.prevBlock.updateUl();
-            //     this.disableBtnListener(this.dependList);
-
-            //     if (this.nextBlock) {
-            //         this.nextBlock.disableBtnListener(this.liValueArr);
-            //     }
-            // });
-            // select.focus();
-
-            // select.addEventListener('change', (e) => {
-            //     this.liValueArr.push(select.value);
-            //     this.addData(select.value);
-
-            //     console.log(e);
-
-            //     const textNode = document.createTextNode(select.value);
-            //     const selectIndex = select.selectedIndex;
-
-            //     li.append(textNode);
-            //     select.remove();
-
-            //     this.dependList.splice(selectIndex - 1, 1);
-            //     this.prevBlock.updateUl();
-            //     this.disableBtnListener(this.dependList);
-
-            //     if (this.nextBlock) {
-            //         this.nextBlock.disableBtnListener(this.liValueArr);
-            //     }
-
-            //     lastFocusedElement.focus();
-            // }, false);
-
-            // select.addEventListener('blur', () => {
-            //     if (select.selectedIndex === 0) {
-            //         li.remove();
-            //         select.remove();
-            //     }               
-            // }, false);
         }, false);
     }
 }
