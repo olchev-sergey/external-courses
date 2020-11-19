@@ -1,19 +1,16 @@
 class DropDownList {
     constructor(liValueArr, dropDownClassName, hiddenClassName) {
         this.liValueArr = liValueArr;
-        // this.pasteElement = elementToAppend;
         this.dropDown = null;
         this.dropDownClassName = dropDownClassName;
         this.hiddenClassName = hiddenClassName;
 
+        this.value = null;
+        this.selectIndex = 0;
 
-    }
-
-    init() {
         this.createList();
-        // this.initListClick();
         this.initKeyDown();
-        this.initFocusBlur();
+        this.initFocus();
     }
 
     getDropDownElement() {
@@ -35,77 +32,70 @@ class DropDownList {
 
         this.dropDown.classList.add(this.dropDownClassName);
         this.dropDown.classList.add(this.hiddenClassName);
-        
     }
-    
 
-    initListClick(callBack) {
-        document.addEventListener('click', (e) => {
-            const clickEl = e.target;
-
-            //if li click
-            if (clickEl.parentElement === this.dropDown || clickEl === this.dropDown) {
-                if (clickEl === this.dropDown.firstChild) {
-                    this.dropDown.classList.remove(this.hiddenClassName);
-                } else {
-                    
-                    const listItemText = clickEl.textContent;
-                    const index = this.liValueArr.findIndex((el) => el === listItemText);
-                    // this.change(listItemText, )
-                    // const textNode = document.createTextNode(listItemText);
-                    // // const li = document.createElement('li');
-                    // // li.append(textNode);
-                    // this.pasteElement.append(textNode);
-                    callBack(listItemText, index);
-                    this.dropDown.remove();
-                    this.dropDown.classList.add(this.hiddenClassName);
-                }
-            } else if (!clickEl.matches('.drop-down > div') &&
-                this.dropDown.parentElement !== null &&
-                !this.dropDown.classList.contains(this.hiddenClassName)
-            ) {
-                this.dropDown.remove();
-                this.dropDown.classList.add(this.hiddenClassName);
+    initClick(callback) {
+        this.dropDown.addEventListener('click', ({ target }) => {
+            if (this.dropDown.firstChild === target) {
+                this.dropDown.classList.remove(this.hiddenClassName);
+                callback();
             }
-
-
-        }, false);
+        });
     }
 
-    initFocusBlur(callBackBlur) {
-        this.dropDown.addEventListener('focus', (e) => {
-            this.dropDown.firstElementChild.focus();
-        }, false);
+    initChange(callBack) {
+        this.dropDown.addEventListener('click', ({target}) => {
+            if (this.dropDown.firstChild !== target) {
+                this.value = target.textContent;
+                this.selectIndex = this.liValueArr.findIndex((el) => el === this.value);
 
+                callBack();
+            }
+        });
+    }
+
+    initBlur(callBack) {
         this.dropDown.firstElementChild.addEventListener('blur', () => {
             if (this.dropDown.classList.contains(this.hiddenClassName)) {
-                this.dropDown.remove();
-                btn.focus();
+                callBack();
             }
         });
 
         this.dropDown.lastElementChild.addEventListener('focus', () => {
-            this.dropDown.remove();
             this.dropDown.classList.add(this.hiddenClassName);
-            btn.focus()
+            callBack();
         });
 
+        document.addEventListener('click', (e) => {
+            const target = e.target;
+
+            if (!target.matches(`${this.dropDownClassName} > div`) &&
+                this.dropDown !== null &&
+                !this.dropDown.classList.contains(this.hiddenClassName) &&
+                this.dropDown.firstChild !== document.activeElement) {
+                    callBack();
+                }
+        }); 
     }
+
+    initFocus(callBack) {
+        this.dropDown.addEventListener('focus', (e) => {
+            this.dropDown.firstElementChild.focus();
+
+            if (callBack) callBack();
+        }, false);  
+    }    
 
     initKeyDown() {
 
         this.dropDown.addEventListener('keydown', (e) => {
             if (e.code === 'Enter') {
-                if (document.activeElement !== this.dropDown) {
+                if (this.dropDown.contains(document.activeElement) && this.dropDown !== document.activeElement) {
                     document.activeElement.click();
-                } else {
-                    // document.activeElement.firstChild.focus();
-                    // document.activeElement.click();
+                } else if (document.activeElement === this.dropDown){
+                    document.activeElement.firstChild.focus();
+                    document.activeElement.click();
                 }
-                // else {
-                //     document.activeElement.firstChild.click();
-                //     document.activeElement.children[1].focus();
-                // }
             }
             if (e.code === 'ArrowUp') {
                 if (document.activeElement.previousElementSibling) {

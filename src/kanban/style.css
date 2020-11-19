@@ -317,20 +317,31 @@ body {
 }
 
 .task-block__drop-down {
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
+
 }
 
 .task-block__drop-down > div {
     cursor: pointer;
-    background-color: blueviolet;
+    border-radius: 2px;
+    padding-left: 3px;
+    /* background-color: blueviolet; */
 }
 
-.task-block__drop-down > div:first-child::after {
-    content: '!';
+.task-block__drop-down > div:not(:first-child)::before {
+    content: '- ';
 }
 
-.task-block__drop-down > div:hover {
-    background-color: brown;
+.task-block__drop-down > div:first-child {
+    text-align: center;
+    cursor: default;
+    /* padding-left: 10px; */
+    background-color: #000;
+    color: #fff;
+}
+
+.task-block__drop-down > div:not(:first-child):hover {
+    background-color: #fff;
 }
 
 .task-block__drop-down > div:last-child {

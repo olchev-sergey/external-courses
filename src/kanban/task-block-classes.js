@@ -30,8 +30,9 @@ class TaskBlock {
         const changedIndex = data.findIndex((element) => {
             return element.title === this.titleText;
         });
-
         data[changedIndex].issues = this.dataMockArr;
+        // this.dataMockArr.splice(1, 1);
+        // console.log(this.dataMockArr);
 
         localStorage.setItem('dataMock', JSON.stringify(data));
     }
@@ -49,8 +50,6 @@ class TaskBlock {
             }
         }, false);
     }
-
-    
 
     deleteLiItem(li) {
         li.remove();
@@ -119,6 +118,8 @@ class TaskBlock {
 
             return li;
         });
+
+        this.dataToLocalStorage();
     }
 
     updateView() {
@@ -146,41 +147,71 @@ class TaskBlockWithSelect extends TaskBlock {
 
     initAddBtnClick() {
         this.addBtn.addEventListener('click', (e) => {
-            // const select = createSelect(['your choose', ...this.dependList]);
-            // const dropDown = createSelect(['Choose', ...this.dependList]);
             const li = createLi();
-            const dropDown = new DropDownList(['choose', ...this.dependList], 'task-block__drop-down', 'task-block__drop-down--hidden');
-            dropDown.init();
-            li.append(dropDown.getDropDownElement());
+            const dropDownList = new DropDownList(['Choose item', ...this.dependList], 'task-block__drop-down', 'task-block__drop-down--hidden');
+            li.append(dropDownList.getDropDownElement());
             this.ul.append(li);
-            
-            // const lastFocusedElement = document.activeElement;
-            dropDown.getDropDownElement().focus();
 
-            const func = () => {
+            dropDownList.dropDown.focus();
 
-            };
+            dropDownList.initClick(() => {
+                this.ul.scrollTop = this.ul.scrollHeight;
+            });
 
-            
-
-            dropDown.initListClick((value, index) => {
-                // console.log(this.liValueArr);
-                this.liValueArr.push(value);
-                this.addData(value);
-
-                console.log(value);
+            dropDownList.initBlur(() => {
+                if (dropDownList.selectIndex === 0) {
+                    li.remove();
+                    dropDownList.dropDown.remove();
+                } 
                 
-                const textNode = document.createTextNode(value);
+            });
+
+
+            dropDownList.initChange(() => {
+                this.liValueArr.push(dropDownList.value);
+                this.addData(dropDownList.value);
+
+                const textNode = document.createTextNode(dropDownList.value);
+                const selectIndex = dropDownList.selectIndex;
+
                 li.append(textNode);
 
-                this.dependList.splice(index - 1, 1);
+                dropDownList.dropDown.remove();
+
+                this.prevBlock.deleteData(dropDownList.value);
+                // this.dependList.splice(selectIndex - 1, 1);
+                // console.log(this.dependList);
                 this.prevBlock.updateUl();
                 this.disableBtnListener(this.dependList);
 
                 if (this.nextBlock) {
                     this.nextBlock.disableBtnListener(this.liValueArr);
                 }
+                
+                // lastFocusedElement.focus();
             });
+
+
+            
+
+            // dropDown.initListClick((value, index) => {
+            //     // console.log(this.liValueArr);
+            //     this.liValueArr.push(value);
+            //     this.addData(value);
+
+            //     console.log(value);
+                
+            //     const textNode = document.createTextNode(value);
+            //     li.append(textNode);
+
+            //     this.dependList.splice(index - 1, 1);
+            //     this.prevBlock.updateUl();
+            //     this.disableBtnListener(this.dependList);
+
+            //     if (this.nextBlock) {
+            //         this.nextBlock.disableBtnListener(this.liValueArr);
+            //     }
+            // });
             // select.focus();
 
             // select.addEventListener('change', (e) => {
