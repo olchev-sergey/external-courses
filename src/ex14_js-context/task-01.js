@@ -6,6 +6,7 @@ class Calculator {
 
         this.getResult = () => {
             return this.result;
+
         };
 
         this.reset = () => {
@@ -39,15 +40,16 @@ class Calculator {
         };
 
         this.setState = (state) => {
-            this.result = state;
+            if (state) this.result = state;
+
+            return this;
         };
 
         this.fetchData = (callBack) => {
             setTimeout(() => {
-                //emulate a request
-                //do something
-                callBack();
-                this.setState(500);
+                if (callBack) {
+                    callBack(500);
+                }
             }, 1000);
         };
     }
