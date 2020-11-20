@@ -55,6 +55,4 @@ class Calculator {
     }
 }
 
-const calc = new Calculator();
-
-module.exports = calc;
+module.exports = Calculator;

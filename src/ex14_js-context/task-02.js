@@ -80,8 +80,4 @@ class Hangman {
     }
 }
 
-const hangman = new Hangman('webpurple');
-
-const a = hangman.getStatus();
-
-module.exports = hangman;
+module.exports = Hangman;
