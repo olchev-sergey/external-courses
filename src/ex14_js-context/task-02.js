@@ -80,4 +80,6 @@ class Hangman {
     }
 }
 
-module.exports = Hangman;
+const hangman = new Hangman('webpurple');
+
+module.exports = hangman;
