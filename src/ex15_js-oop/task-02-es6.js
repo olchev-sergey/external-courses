@@ -4,10 +4,10 @@ class ElectricalAppliance {
     #inSocket = false;
     #name = '';
 
-    constructor(type, name, power) {
-        this.#type = type || '';
-        this.#name = name || '';
-        this.#power = power || 0;
+    constructor(type = '', name = '', power = 0) {
+        this.#type = type;
+        this.#name = name;
+        this.#power = power;
     }
 
     getType() {
@@ -96,16 +96,6 @@ class Room {
     }
 
     findDeviceByName(name) {
-        return this.#connectedDevices.find((item) => item.ge)
+        return this.#connectedDevices.find((item) => item.getName() === name);
     }
 }
-
-const tv1 = new Television('SAMSUNG UE50', 20);
-const tv2 = new Television('XIAOMI MI TV 4A', 40);
-
-const mw1 = new MicroWave('SAMSUNG ME-88', 800);
-const mw2 = new MicroWave('LG cono M52', 800);
-mw2.turnOn();
-
-const bedRoom = new Room('bedroom 1', tv1, tv2, mw1, mw2);
-bedRoom.printRoomDevices();
