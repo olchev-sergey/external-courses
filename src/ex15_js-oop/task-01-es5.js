@@ -1,59 +1,59 @@
 function Candy(name, type, weight) {
-    this.name = name;
-    this.type = type;
-    this.weight = weight;
+    this._name = name;
+    this._type = type;
+    this._weight = weight;
 }
 
 Candy.prototype.setWeight = function (weight) {
-    this.weight = weight;
+    this._weight = weight;
 };
 
 Candy.prototype.getWeight = function () {
-    return this.weight;
+    return this._weight;
 };
 
 Candy.prototype.getName = function () {
-    return this.name;
+    return this._name;
 };
 
 Candy.prototype.toString = function () {
-    return `Name: ${this.name}, Type: ${this.type}, Weight: ${this.weight}`;
+    return `Name: ${this._name}, Type: ${this._type}, Weight: ${this._weight}`;
 }
 
 function Present(...sweets) {
-    this.sweets = [...sweets];
-    this.weight = 0;
+    this._sweets = [...sweets];
+    this._weight = 0;
 
     this.updateWeight();
 }
 
 Present.prototype.updateWeight = function () {
-    this.weight = this.sweets.reduce((prev, sweet) => {
+    this._weight = this._sweets.reduce((prev, sweet) => {
         return prev + sweet.getWeight();
     }, 0);
 };
 
 Present.prototype.setSweets = function (...sweets) {
-    this.sweets = sweets;
+    this._sweets = sweets;
 };
 
 Present.prototype.getWeight = function () {
-    return this.weight;
+    return this._weight;
 };
 
 Present.prototype.printSweets = function () {
-    this.sweets.forEach((sweet, i) => {
+    this._sweets.forEach((sweet, i) => {
         console.log(`${i + 1}) ` + sweet.toString());    
     });
 };
 
 Present.prototype.findSweetByName = function (name) {
-    return this.sweets.find((sweet) => sweet.getName() === name);
+    return this._sweets.find((sweet) => sweet.getName() === name);
 };
 
 Present.prototype.sortSweetsByProperty = function (compareFunction) {
-    this.sweets.sort(compareFunction);
+    this._sweets.sort(compareFunction);
 
-    return this.sweets;
+    return this._sweets;
 };
 
