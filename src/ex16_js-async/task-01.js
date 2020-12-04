@@ -1,7 +1,11 @@
-function myFetch(url, method = 'GET', postData = null) {
+function myFetch(url, method = 'GET', headers = {}, postData = null) {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.open(method, url, true);
+        
+        for (const name in headers) {
+            xhr.setRequestHeader(name, headers[name]);
+        }
 
         xhr.onload = (e) => {
             if (xhr.readyState === 4) {
@@ -21,4 +25,3 @@ function myFetch(url, method = 'GET', postData = null) {
         xhr.send(postData);
     });
 };
-
