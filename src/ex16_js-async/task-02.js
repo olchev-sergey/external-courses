@@ -5,17 +5,19 @@ const url = 'task-02-dataMock.json';
 
 function debounce(func, msBlock) {
     let cache = false;
+    let timerId = null;
 
     return function (...args) {
-        if (cache) return;
+        if (cache) {
+            clearInterval(timerId);
+            cache = false;
+        }
 
-        func.apply(this, args);
+        timerId = setTimeout(() => {
+            func.apply(this, args);
+        }, msBlock);
 
         cache = true;
-
-        setTimeout(() => {
-            cache = false;
-        }, msBlock);
     }
 }
 
