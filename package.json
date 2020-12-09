@@ -31,7 +31,8 @@
   "eslintIgnore": [
     "**/test/**/*",
     "/__tests__/**/*",
-    "/node_modules"
+    "/node_modules",
+    "/src/kanban/dataBase/*.*"
   ],
   "jest": {
     "moduleNameMapper": {
