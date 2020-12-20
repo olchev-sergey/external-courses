@@ -33,6 +33,7 @@ body {
 .header {
     padding: 0 10px;
     background-color: #0067a3;
+    /* background-color: red; */
     color: #fff;
     display: grid;
     grid-template-columns: 50px 331px 1fr 200px 64px;
@@ -296,10 +297,11 @@ body {
 .task-block__add-btn--disabled {
     cursor: not-allowed;
     text-decoration: line-through;
+    /* pointer-events: none; */
 }
 
 .task-block__add-btn--disabled > * {
-    pointer-events: none;
+    /* pointer-events: none; */
 }
 
 .task-block__input {
@@ -317,7 +319,7 @@ body {
 }
 
 .task-block__drop-down {
-
+    display: block;
 }
 
 .task-block__drop-down > div {
@@ -327,7 +329,7 @@ body {
 }
 
 .task-block__drop-down > div:not(:first-child)::before {
-    content: '- ';
+    content: '☺';
 }
 
 .task-block__drop-down > div:first-child {

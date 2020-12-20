@@ -1,4 +1,4 @@
-class DropDownList {
+export default class DropDownList {
     constructor(liValueArr, dropDownClassName, hiddenClassName) {
         this.liValueArr = liValueArr;
         this.dropDown = null;
@@ -38,6 +38,7 @@ class DropDownList {
         this.dropDown.addEventListener('click', ({ target }) => {
             if (this.dropDown.firstChild === target) {
                 this.dropDown.classList.remove(this.hiddenClassName);
+                // console.log('bbbb');
                 callback();
             }
         });
