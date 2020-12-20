@@ -113,6 +113,7 @@ export class Board {
             task.setAddBtnStatus(prevBlockData.length);
             task.setDropDownListValue(prevBlockData.map((elem) => elem.name));
             task.renderTaskList();
+
             return task;
         });
 
@@ -122,39 +123,30 @@ export class Board {
                 this.renderBoard();
             });
 
-            if (i === 0) {
-                //first task block
-                this.tasks[i].setAddReqListener((addData) => {
-                    this.tasks[i+1].setDropDownListValue(this.tasks[i].taskTextArr);
-                    this.tasks[i+1].setAddBtnStatus(this.tasks[i].taskTextArr);
+            this.tasks[i].setAddReqListener(async (addData) => {
+                if (i !== 0) {
+                    await this.tasks[i-1]._fetchRequestDelete(addData);
+                    this.tasks[i].setDropDownListValue(this.tasks[i-1].taskTextArr);
+
+                    if (i === this.tasks.length - 1) {
+                        this.finishedTasks.innerHTML = Number(this.finishedTasks.innerHTML) + 1;
+                        this.activeTasks.innerHTML = Number(this.activeTasks.innerHTML) - 1;
+
+                        return;
+                    }                    
+                }
+
+                if (i === 0) {
                     this.activeTasks.innerHTML = Number(this.activeTasks.innerHTML) + 1;
-                });
+                }
 
-                this.tasks[i].setDelReqListener(() => {
-                    this.tasks[i+1].setAddBtnStatus(this.tasks[i].taskTextArr.length);
-                });
+                this.tasks[i+1].setDropDownListValue(this.tasks[i].taskTextArr);
+                this.tasks[i+1].setAddBtnStatus(this.tasks[i].taskTextArr);
+            });
 
-            } else if (i === this.tasks.length - 1) {
-                //last task block
-                this.tasks[i].setAddReqListener( async (addData) => {
-                    await this.tasks[i-1]._fetchRequestDelete(addData);
-                    this.tasks[i].setDropDownListValue(this.tasks[i-1].taskTextArr);
-                    this.finishedTasks.innerHTML = Number(this.finishedTasks.innerHTML) + 1;
-                    this.activeTasks.innerHTML = Number(this.activeTasks.innerHTML) - 1;
-                });
-            } else {
-                //other task block
-                this.tasks[i].setAddReqListener( async(addData) => {
-                    await this.tasks[i-1]._fetchRequestDelete(addData);
-                    this.tasks[i+1].setDropDownListValue(this.tasks[i].taskTextArr);
-                    this.tasks[i].setDropDownListValue(this.tasks[i-1].taskTextArr);
-                    this.tasks[i+1].setAddBtnStatus(this.tasks[i].taskTextArr);
-                });
-
-                this.tasks[i].setDelReqListener(() => {
-                    this.tasks[i+1].setAddBtnStatus(this.tasks[i].taskTextArr.length);
-                });
-            }
+            this.tasks[i].setDelReqListener(() => {
+                this.tasks[i+1].setAddBtnStatus(this.tasks[i].taskTextArr.length);
+            });
         }
     }
 }
