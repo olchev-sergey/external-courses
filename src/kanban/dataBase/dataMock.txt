@@ -4,22 +4,13 @@
         "issues": [
             {
                 "id": "task1",
-                "name": "kkk"
+                "name": "dddd"
             }
         ]
     },
     {
         "title": "Ready",
-        "issues": [
-            {
-                "id": "task1",
-                "name": "dddd"
-            },
-            {
-                "id": "task2",
-                "name": "jdjd"
-            }
-        ]
+        "issues": []
     },
     {
         "title": "In Progress",

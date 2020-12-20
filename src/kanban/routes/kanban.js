@@ -5,14 +5,17 @@ const path = require('path');
 const fs = require("fs");
 
 router.get("/", async (req, res) => {
-    const data = await DataMock.getFileinJson();
+    let data = await DataMock.getFileinJson();
+    let finishedTasks = 0;
+    let activeTasks = 0;
+    if (data.length !== 0) {
+        finishedTasks = data[data.length - 1].issues.length;
 
-    console.log(data);
-    const finishedTasks = data[data.length - 1].issues.length;
-
-    const activeTasks = data.reduce((sum, currentItem) => {
-        return sum + currentItem.issues.length;
-    }, 0) - finishedTasks;
+        activeTasks = data.reduce((sum, currentItem) => {
+            return sum + currentItem.issues.length;
+        }, 0) - finishedTasks;
+    }
+   
 
     res.render("board", {
         title: "kanban",

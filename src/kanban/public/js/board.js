@@ -62,7 +62,12 @@ export default class Board {
 
     renderBoard(blockArr = this.tasksValue) {
         this.block.innerHTML = '';
+        console.log(blockArr.length);
+        if (blockArr.length === 0) {
+            this.block.innerHTML = `<p>No task block</p>`
 
+            return;
+        }
         blockArr.forEach((blockInfo) => {
             const block = this.createBlock(blockInfo);
 
@@ -95,6 +100,7 @@ export default class Board {
     async initTaskBlocks() {
         this.domTaskBlocks = document.querySelectorAll('.task-block');
         const dataArr = await this._requestData();
+        
         this.tasks = dataArr.map((taskData, i, arr) => {
             if (i === 0) {
                 const task = new TaskBlock(this.domTaskBlocks[i], taskData.issues, i);

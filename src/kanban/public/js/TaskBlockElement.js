@@ -26,6 +26,7 @@ export default class TaskBlock {
                 dropDownList.initChange(() => {
                     this.block.remove();
 
+                    cbk(this.id);
                 });
             } else {
                 dropDownList.getDropDownElement().remove();

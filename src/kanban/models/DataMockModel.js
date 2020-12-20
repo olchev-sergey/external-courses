@@ -116,6 +116,6 @@ class DataMockModel {
 
 }
 
-const model = new DataMockModel(path.join(__dirname, '../dataBase/dataMock.js'));
+const model = new DataMockModel(path.join(__dirname, '../dataBase/dataMock.txt'));
 
 module.exports = model;
