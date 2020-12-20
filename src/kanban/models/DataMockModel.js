@@ -1,3 +1,4 @@
+
 /*eslint no-param-reassign: ["error", { "props": false }]*/
 
 const path = require('path');
@@ -55,6 +56,7 @@ class DataMockModel {
             console.log(e);
         }
 
+
         return null;
     }
 
@@ -85,6 +87,7 @@ class DataMockModel {
 
         fileData.splice(id, 1);
         await this.writeFile(fileData);
+
     }
 
 
@@ -105,7 +108,6 @@ class DataMockModel {
 
         const targetData = fileData[id];
         const deleteId = targetData.issues.findIndex((elem) => elem.name === data);
-
         targetData.issues.splice(deleteId, 1);
         this.updateTaskId(targetData.issues);
         await this.writeFile(fileData);

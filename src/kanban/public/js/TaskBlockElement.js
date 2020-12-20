@@ -1,3 +1,4 @@
+
 import DropDownList from './DropDownList.js';
 
 export default class TaskBlock {
@@ -46,6 +47,7 @@ export default class TaskBlock {
     // setAfterRequestUpdate(callback) {
     //     this.callBackUpdate = callback;
     // }
+
     
     getLiTextArr() {
         const li = this.block.querySelectorAll('ul > li');
@@ -90,12 +92,14 @@ export default class TaskBlock {
 
         try {
             const responseData = await promise.json();
+
             this.taskTextArr = this.dataToTextArr(responseData.issues);
             // console.log(this.taskTextArr);
             this.renderTaskList(this.dataToTextArr(responseData.issues));
             if (this.updateCallback) {
                 this.updateCallback(data);
             }
+
         } catch(e) {
             console.log('ooohhhhh, no', e);
         }
@@ -115,6 +119,7 @@ export default class TaskBlock {
 
         try {
             const responseData = await promise.json();
+
             this.taskTextArr = this.dataToTextArr(responseData.issues);
             // console.log(this.dataToTextArr(responseData.issues));
             this.renderTaskList(this.dataToTextArr(responseData.issues));
@@ -122,13 +127,14 @@ export default class TaskBlock {
             if (this.deleteCallback) {
                 this.deleteCallback(data);
             }
+
         } catch(e) {
             console.log('ooohhhhh, no', e);
         }
     }
 
     _btnClick() {
-        // console.log(this.isTaskListEmpty());
+
         const li = document.createElement('li');
         const input = document.createElement('input');
         li.append(input);
@@ -136,9 +142,11 @@ export default class TaskBlock {
 
         input.focus();
 
+
         input.addEventListener('change', async () => {
             await this._fetchRequestAdd(input.value);
             // callback(input.value);
+
             input.remove();
         });
 
@@ -150,6 +158,7 @@ export default class TaskBlock {
         });
     }
 
+
     // _btnClickContext = this._btnClick.bind(this);
 
     initBtnListener() {
@@ -157,6 +166,7 @@ export default class TaskBlock {
         this.addBtn.addEventListener('click', () => {
             this._btnClick();
         });
+
     }
 
     removeBtnListener() {
@@ -167,11 +177,14 @@ export default class TaskBlock {
     renderTask(task) {
         const li = document.createElement('li');
         li.classList.add('task-block__list-item')
+
         const textNode = document.createTextNode(task);
+
         li.append(textNode);
 
         return li;
     }
+
 
     renderTaskList(data = this.taskTextArr) {
         const currentTaskArr = this.getLiTextArr();
@@ -179,6 +192,7 @@ export default class TaskBlock {
             // console.log(true);
             return;
         } 
+
 
         this.ul.innerHTML = '';
 

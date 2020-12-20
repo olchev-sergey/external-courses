@@ -258,6 +258,7 @@ body {
 
 .task-block__title-burger {
     position: relative;
+
     cursor: pointer;
 }
 
@@ -300,6 +301,7 @@ body {
     text-decoration: line-through;
     pointer-events: none;
     cursor: not-allowed;
+
 }
 
 .task-block__add-btn--disabled > * {
@@ -391,6 +393,7 @@ body {
 }
 
 
+
 /*start popup style*/
 .popup {
     background-color: rgba(0, 0, 0, 0.8);
@@ -480,3 +483,4 @@ body {
     visibility: hidden;
 }
 /* end drop down option list */
+

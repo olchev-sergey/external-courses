@@ -1,6 +1,7 @@
 import TaskBlock from './TaskBlockElement.js';
 import TaskBlockDDL from './TaskBlockWithDDL.js';
 
+
 export default class Board {
     constructor(domBlock = null) {
         this.block = domBlock;
@@ -167,4 +168,5 @@ export default class Board {
 
 
 }
+
 

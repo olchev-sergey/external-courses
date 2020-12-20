@@ -4,7 +4,6 @@ export default class DropDownList {
         this.dropDown = null;
         this.dropDownClassName = dropDownClassName;
         this.hiddenClassName = hiddenClassName || 's';
-
         this.value = null;
         this.selectIndex = 0;
 
