@@ -1,4 +1,4 @@
-export default class CreateTaskPopup {
+export class CreateTaskPopup {
     constructor(popClassName, modalClassName) {
         this.popClassName = popClassName;
         this.modalClassName = modalClassName;
@@ -41,8 +41,7 @@ export default class CreateTaskPopup {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "value": data,
-                "id": 1
+                "value": data
             })
         });
 

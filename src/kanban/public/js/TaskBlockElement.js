@@ -1,8 +1,6 @@
+import { DropDownList } from './DropDownList.js';
 
-import DropDownList from './DropDownList.js';
-
-export default class TaskBlock {
-
+export class TaskBlock {
     constructor(taskBlock, taskTextArr, id) {
         this.block = taskBlock;
         this.id = id;
@@ -163,12 +161,27 @@ export default class TaskBlock {
         return li;
     }
 
+    isEqualArr(arr1, arr2) {
+        if (arr1.length !== arr2.length) {
+            return false;
+        }
+
+        for (let i = 0; i < arr1.length; i++) {
+            if (arr1[i] !== arr2[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 
     renderTaskList(data = this.taskTextArr) {
         const currentTaskArr = this.getLiTextArr();
-        if (JSON.stringify(currentTaskArr) === JSON.stringify(data)) {
+
+        if (this.isEqualArr(currentTaskArr, data)) {
             return;
-        } 
+        }
 
         this.ul.innerHTML = '';
 

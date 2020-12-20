@@ -1,12 +1,7 @@
 [
     {
         "title": "backlog",
-        "issues": [
-            {
-                "id": "task1",
-                "name": "dddd"
-            }
-        ]
+        "issues": []
     },
     {
         "title": "Ready",
@@ -38,6 +33,10 @@
             {
                 "id": "task6",
                 "name": "sdsdsd"
+            },
+            {
+                "id": "task7",
+                "name": "dddd"
             }
         ]
     },

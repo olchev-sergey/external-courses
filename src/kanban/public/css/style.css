@@ -355,11 +355,9 @@ body {
     transform: translateY(-100%);
 }
 
-
 .task-block__drop-down--hidden > div:not(:first-child) {
     display: none;
 }
-
 /* end main block styles */
 
 /* start footer styles */
@@ -391,8 +389,6 @@ body {
 
 .board-info-text {
 }
-
-
 
 /*start popup style*/
 .popup {
@@ -481,4 +477,3 @@ body {
     visibility: hidden;
 }
 /* end drop down option list */
-

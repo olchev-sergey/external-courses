@@ -32,7 +32,6 @@ class DataMockModel {
     async readFile() {
         const promise = new Promise((res, rej) => {
             fs.readFile(this.url, 'utf-8', (err, data) => {
-
                 if (err) {
                     throw err;
                 }
@@ -69,22 +68,19 @@ class DataMockModel {
     async addBlockToBeginFile(title) {
         const fileData = await this.getFileinJson();
 
-        fileData.unshift({
-            "title": title,
-            "issues": [],
-        });
-
-        await this.writeFile(fileData);
+        await this.writeFile([
+            {
+                'title': title,
+                'issues': [],
+            },
+            ...fileData,
+        ]);
     }
 
     async deleteBlockFromFile(id) {
         const fileData = await this.getFileinJson();
-
-        const targetBlock = fileData[id];
-
-        fileData.splice(id, 1);
-        await this.writeFile(fileData);
-
+        const newFileData = fileData.filter((elem, i) => i !== id);
+        await this.writeFile(newFileData);
     }
 
 

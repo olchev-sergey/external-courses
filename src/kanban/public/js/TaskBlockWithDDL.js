@@ -1,7 +1,7 @@
-import TaskBlock from './TaskBlockElement.js';
-import DropDownList from './DropDownList.js';
+import { TaskBlock } from './TaskBlockElement.js';
+import { DropDownList } from './DropDownList.js';
 
-export default class TaskBlockDDL extends TaskBlock {
+export class TaskBlockDDL extends TaskBlock {
     constructor(taskBlock, taskTextArr, id) {
         super(taskBlock,taskTextArr, id);
     }

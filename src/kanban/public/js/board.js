@@ -1,8 +1,8 @@
-import TaskBlock from './TaskBlockElement.js';
-import TaskBlockDDL from './TaskBlockWithDDL.js';
+import { TaskBlock } from './TaskBlockElement.js';
+import { TaskBlockDDL } from './TaskBlockWithDDL.js';
 
 
-export default class Board {
+export class Board {
     constructor(domBlock = null) {
         this.block = domBlock;
         this.observers = [];
@@ -109,8 +109,9 @@ export default class Board {
             }
 
             const task = new TaskBlockDDL(this.domTaskBlocks[i], taskData.issues, i);
-            task.setAddBtnStatus(arr[i-1].issues.length);
-            task.setDropDownListValue(arr[i-1].issues.map((elem) => elem.name));
+            const prevBlockData = arr[i-1].issues;
+            task.setAddBtnStatus(prevBlockData.length);
+            task.setDropDownListValue(prevBlockData.map((elem) => elem.name));
             task.renderTaskList();
             return task;
         });
