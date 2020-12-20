@@ -420,14 +420,12 @@ body {
 
 .popup-title {
     font-size: 36px;
-    /* background-color: #0079bf; */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .popup-input-wrapper {
-    /* background-color: green; */
     height: 40%;
     display: flex;
     align-items: center;

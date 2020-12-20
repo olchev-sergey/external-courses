@@ -12,6 +12,7 @@ class DataMockModel {
     async writeFile(jsonData) {
         const promise = new Promise((res, rej) => {
             fs.writeFile(this.url, JSON.stringify(jsonData, null, 4), (err) => {
+
                 if (err) {
                     console.log(err);
                     rej(err);
@@ -23,7 +24,6 @@ class DataMockModel {
 
         try {
             const t = await promise;
-            // console.log(t);
         } catch(e) {
             console.log(e);
         }
@@ -32,6 +32,7 @@ class DataMockModel {
     async readFile() {
         const promise = new Promise((res, rej) => {
             fs.readFile(this.url, 'utf-8', (err, data) => {
+
                 if (err) {
                     throw err;
                 }
@@ -43,8 +44,8 @@ class DataMockModel {
         });
 
         const data = await promise;
+
         return data;
-        
     }
 
     async getFileinJson() {
@@ -55,7 +56,6 @@ class DataMockModel {
         } catch(e) {
             console.log(e);
         }
-
 
         return null;
     }
@@ -69,14 +69,11 @@ class DataMockModel {
     async addBlockToBeginFile(title) {
         const fileData = await this.getFileinJson();
 
-        console.log(fileData);
-        console.log('------------------------');
         fileData.unshift({
             "title": title,
             "issues": [],
         });
 
-        console.log(fileData);
         await this.writeFile(fileData);
     }
 
@@ -105,13 +102,13 @@ class DataMockModel {
 
     async deleteTaskFromFile(data, id) {
         const fileData = await this.getFileinJson();
-
         const targetData = fileData[id];
+
         const deleteId = targetData.issues.findIndex((elem) => elem.name === data);
+
         targetData.issues.splice(deleteId, 1);
         this.updateTaskId(targetData.issues);
         await this.writeFile(fileData);
-        console.log('succes');
     }  
 
 }

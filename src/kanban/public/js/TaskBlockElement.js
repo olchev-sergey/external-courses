@@ -12,7 +12,6 @@ export default class TaskBlock {
         this.addBtn = taskBlock.children[2];
 
         this.initBtnListener();
-        // this.initOptionsClickListener();
     } 
 
     initOptionsClickListener(cbk) {
@@ -31,9 +30,6 @@ export default class TaskBlock {
             } else {
                 dropDownList.getDropDownElement().remove();
             }
-            
-            
-            // cbk(this.id);
         });
     }
 
@@ -45,11 +41,6 @@ export default class TaskBlock {
         return reqData.map((elem) => elem.name);
     }
 
-    // setAfterRequestUpdate(callback) {
-    //     this.callBackUpdate = callback;
-    // }
-
-    
     getLiTextArr() {
         const li = this.block.querySelectorAll('ul > li');
         const textArr = [].map.call(li, (elem) => {
@@ -95,8 +86,8 @@ export default class TaskBlock {
             const responseData = await promise.json();
 
             this.taskTextArr = this.dataToTextArr(responseData.issues);
-            // console.log(this.taskTextArr);
             this.renderTaskList(this.dataToTextArr(responseData.issues));
+
             if (this.updateCallback) {
                 this.updateCallback(data);
             }
@@ -120,11 +111,9 @@ export default class TaskBlock {
 
         try {
             const responseData = await promise.json();
-
             this.taskTextArr = this.dataToTextArr(responseData.issues);
-            // console.log(this.dataToTextArr(responseData.issues));
             this.renderTaskList(this.dataToTextArr(responseData.issues));
-            // this.setAddBtnStatus(this.taskTextArr.length);
+
             if (this.deleteCallback) {
                 this.deleteCallback(data);
             }
@@ -146,8 +135,6 @@ export default class TaskBlock {
 
         input.addEventListener('change', async () => {
             await this._fetchRequestAdd(input.value);
-            // callback(input.value);
-
             input.remove();
         });
 
@@ -159,28 +146,18 @@ export default class TaskBlock {
         });
     }
 
-
-    // _btnClickContext = this._btnClick.bind(this);
-
     initBtnListener() {
-        // this.addBtn.addEventListener('click', this._btnClickContext);
         this.addBtn.addEventListener('click', () => {
             this._btnClick();
         });
 
     }
 
-    removeBtnListener() {
-        this.addBtn.removeEventListener('click', this._btnClickContext);
-    }
-
-
     renderTask(task) {
         const li = document.createElement('li');
         li.classList.add('task-block__list-item')
 
         const textNode = document.createTextNode(task);
-
         li.append(textNode);
 
         return li;
@@ -190,10 +167,8 @@ export default class TaskBlock {
     renderTaskList(data = this.taskTextArr) {
         const currentTaskArr = this.getLiTextArr();
         if (JSON.stringify(currentTaskArr) === JSON.stringify(data)) {
-            // console.log(true);
             return;
         } 
-
 
         this.ul.innerHTML = '';
 
