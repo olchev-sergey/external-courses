@@ -1,14 +1,12 @@
 import { TaskBlock } from './TaskBlockElement.js';
 import { TaskBlockDDL } from './TaskBlockWithDDL.js';
 
-
 export class Board {
     constructor(domBlock = null) {
         this.block = domBlock;
+        
         this.observers = [];
-
         this.tasks = [];
-
         this.tasksValue = null;
 
         this.domTaskBlocks = document.querySelectorAll('.task-block');

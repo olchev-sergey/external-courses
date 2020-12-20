@@ -1,4 +1,3 @@
-
 /*eslint no-param-reassign: ["error", { "props": false }]*/
 
 const path = require('path');
@@ -51,6 +50,7 @@ class DataMockModel {
         try {
             const data = await this.readFile();
             const jsonData = JSON.parse(data);
+
             return jsonData;
         } catch(e) {
             console.log(e);
@@ -106,7 +106,6 @@ class DataMockModel {
         this.updateTaskId(targetData.issues);
         await this.writeFile(fileData);
     }  
-
 }
 
 const model = new DataMockModel(path.join(__dirname, '../dataBase/dataMock.txt'));

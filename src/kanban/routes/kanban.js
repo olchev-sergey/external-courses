@@ -25,7 +25,6 @@ router.get("/", async (req, res) => {
         userYear: 2020,
         data
     });
-
 });
 
 

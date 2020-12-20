@@ -122,14 +122,12 @@ export class TaskBlock {
     }
 
     _btnClick() {
-
         const li = document.createElement('li');
         const input = document.createElement('input');
         li.append(input);
         this.ul.append(li);
 
         input.focus();
-
 
         input.addEventListener('change', async () => {
             await this._fetchRequestAdd(input.value);
@@ -148,7 +146,6 @@ export class TaskBlock {
         this.addBtn.addEventListener('click', () => {
             this._btnClick();
         });
-
     }
 
     renderTask(task) {

@@ -8,7 +8,6 @@ export class CreateTaskPopup {
         this.confirmBtn = null;
 
         this.initPopupView();
-
         this.blur();
     }
 

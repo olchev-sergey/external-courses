@@ -41,7 +41,6 @@ export class TaskBlockDDL extends TaskBlock {
                 li.remove();
                 dropDownList.dropDown.remove();
             } 
-
         });
 
         dropDownList.initChange(async () => {
@@ -49,5 +48,4 @@ export class TaskBlockDDL extends TaskBlock {
             dropDownList.dropDown.remove();
         });
     }
-
 }

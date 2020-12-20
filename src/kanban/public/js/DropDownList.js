@@ -1,9 +1,10 @@
 export class DropDownList {
     constructor(liValueArr, dropDownClassName, hiddenClassName = '') {
         this.liValueArr = liValueArr;
-        this.dropDown = null;
         this.dropDownClassName = dropDownClassName;
         this.hiddenClassName = hiddenClassName;
+        
+        this.dropDown = null;
         this.value = null;
         this.selectIndex = 0;
 
