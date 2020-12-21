@@ -209,7 +209,6 @@ body {
     overflow-x: scroll;
     display: flex;
     align-items: flex-start;
-    column-gap: 24px;
     padding: 20px 20px 0 20px;
 }
 
@@ -243,7 +242,7 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     position: relative;
-    
+    margin-right: 24px;
 }
 
 .task-block__title {
@@ -277,6 +276,7 @@ body {
     margin-bottom: 10px;
     border-radius: 5px;
     padding: 8px;
+    word-wrap: break-word;
 }
 
 .task-block__list-item:hover {
