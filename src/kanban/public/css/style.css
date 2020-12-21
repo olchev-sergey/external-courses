@@ -477,3 +477,24 @@ body {
     visibility: hidden;
 }
 /* end drop down option list */
+
+/* satrt drag`n`drop styles */
+.moving-element {
+    position: absolute;
+    z-index: 1000;
+    background-color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    list-style: none;
+}
+
+.unvisible-li {
+    background: transparent;
+    border: 2px dashed rgb(102, 255, 0); 
+}
+
+.unused-task-block {
+    opacity: 0.4;
+    pointer-events: none;
+}
+/* end drag`n`drop styles */

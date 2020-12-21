@@ -10,11 +10,127 @@ export class Board {
         this.tasksValue = null;
 
         this.domTaskBlocks = document.querySelectorAll('.task-block');
+
+        // this.currentDroppable = null;
+
     }
 
     setCounterTask(active, finished) {
         this.activeTasks = active;
         this.finishedTasks = finished;
+    }
+
+    initDragDrop() {
+        let currentDroppable = null;
+        const ulDomArr = [].map.call(this.domTaskBlocks, (el) => el.querySelector('ul'));
+
+        const addUnvisibleLi = (ul) => {
+            const li = document.createElement('li');
+            li.innerHTML = '&nbsp';
+            li.classList.add(...ul.firstElementChild.classList, 'unvisible-li');
+            ul.append(li);
+        }
+
+        const deleteUnvisibleLi = (ul) => {
+            ul.lastElementChild.remove();
+        }
+
+        const disableBlock = (num, className) => {
+            for (let i = 0; i < num; i++) {
+                this.domTaskBlocks[i].classList.add(className);
+            }
+        }
+
+        const enableBlock = (num, className) => {
+            for (let i = 0; i < num; i++) {
+                this.domTaskBlocks[i].classList.remove(className);
+            }
+        } 
+
+        document.onmousedown = (e) => {
+            const target = e.target;
+
+            if (![].includes.call(ulDomArr, target.parentElement)) {
+                return;
+            }
+
+            let shiftX = e.clientX - target.getBoundingClientRect().left;
+            let shiftY = e.clientY - target.getBoundingClientRect().top;
+
+            const targetParent = target.parentElement;
+            const targetParentNum = [].findIndex.call(this.domTaskBlocks, (elem) => elem === targetParent.parentElement);
+
+            disableBlock(targetParentNum, 'unused-task-block');
+
+            const targetWidth = target.offsetWidth;
+            const targetHeihgt = target.offsetHeight;
+            target.classList.add('moving-element');
+            target.style.width = targetWidth + 'px';
+            target.style.height = targetHeihgt + 'px';
+
+            moveAt(e.pageX, e.pageY);
+
+            document.body.append(target);
+
+            function moveAt(pageX, pageY) {
+                target.style.left = pageX - shiftX + 'px';
+                target.style.top = pageY - shiftY + 'px';
+            }
+
+            function onMOuseMove(e) {
+                moveAt(e.pageX, e.pageY);
+
+                target.hidden = true;
+                let elemBelow = document.elementFromPoint(e.clientX, e.clientY);
+                target.hidden = false;
+
+                if (!elemBelow) return;
+
+                let droppableBelow = elemBelow.closest('ul');
+
+                if (currentDroppable !== droppableBelow) {
+                    if (currentDroppable) {
+                        currentDroppable.classList.remove('under-ul');
+                        deleteUnvisibleLi(currentDroppable);
+                    }
+
+                    currentDroppable = droppableBelow;
+
+                    if (currentDroppable) {
+                        currentDroppable.classList.add('under-ul');
+                        addUnvisibleLi(currentDroppable);
+                    }
+                }
+            }
+
+            document.addEventListener('mousemove', onMOuseMove);
+
+            target.onmouseup = (e) => {
+                document.removeEventListener('mousemove', onMOuseMove);
+                target.onmouseup = null;
+
+                if (![].includes.call(ulDomArr, currentDroppable)) {
+                    targetParent.append(target);
+                } else {
+                    deleteUnvisibleLi(currentDroppable);
+                    currentDroppable.append(target);
+                    
+                    if (targetParent !== currentDroppable)  {
+                        const taskNum = [].findIndex.call(this.domTaskBlocks, (el) => el === currentDroppable.parentElement);
+                        this.tasks[taskNum]._fetchRequestAdd(target.textContent);   
+                    }
+                }
+
+                target.classList.remove('moving-element');
+
+                if (currentDroppable) {
+                    currentDroppable.classList.remove('under-ul');
+                }
+
+                enableBlock(targetParentNum, 'unused-task-block');
+                currentDroppable = null;
+            };
+        }
     }
 
     async _requestData() {
@@ -96,6 +212,7 @@ export class Board {
 
     async initTaskBlocks() {
         this.domTaskBlocks = document.querySelectorAll('.task-block');
+        this.initDragDrop();
         const dataArr = await this._requestData();
         
         this.tasks = dataArr.map((taskData, i, arr) => {

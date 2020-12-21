@@ -8,6 +8,7 @@ const finishedTask = document.querySelector('#finishedTasksCount');
 const board = new Board(main);
 board.setCounterTask(activeTask, finishedTask);
 board.initTaskBlocks();
+// board.initDragDrop();
 
 const popup = new CreateTaskPopup('popup', 'popup-inner');
 popup.setBlockAddCbk((data) => {

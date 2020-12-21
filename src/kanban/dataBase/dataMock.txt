@@ -1,11 +1,29 @@
 [
     {
         "title": "backlog",
-        "issues": []
+        "issues": [
+            {
+                "id": "task1",
+                "name": "Sprint bugfix"
+            },
+            {
+                "id": "task2",
+                "name": "block 2"
+            }
+        ]
     },
     {
         "title": "Ready",
-        "issues": []
+        "issues": [
+            {
+                "id": "task1",
+                "name": "Sprint bugfix"
+            },
+            {
+                "id": "task2",
+                "name": "block 2"
+            }
+        ]
     },
     {
         "title": "In Progress",
@@ -28,20 +46,25 @@
             },
             {
                 "id": "task5",
-                "name": "fddf"
-            },
-            {
-                "id": "task6",
-                "name": "sdsdsd"
-            },
-            {
-                "id": "task7",
-                "name": "dddd"
+                "name": "block 2"
             }
         ]
     },
     {
         "title": "Finished",
-        "issues": []
+        "issues": [
+            {
+                "id": "task1",
+                "name": "Sprint bugfix"
+            },
+            {
+                "id": "task2",
+                "name": "block 2"
+            },
+            {
+                "id": "task3",
+                "name": "sdsdsd"
+            }
+        ]
     }
 ]
