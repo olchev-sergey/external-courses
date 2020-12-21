@@ -5,10 +5,6 @@
             {
                 "id": "task1",
                 "name": "Sprint bugfix"
-            },
-            {
-                "id": "task2",
-                "name": "block 2"
             }
         ]
     },
@@ -21,6 +17,10 @@
             },
             {
                 "id": "task2",
+                "name": "block 2"
+            },
+            {
+                "id": "task3",
                 "name": "block 2"
             }
         ]

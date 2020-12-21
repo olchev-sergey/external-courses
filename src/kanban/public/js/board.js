@@ -10,9 +10,7 @@ export class Board {
         this.tasksValue = null;
 
         this.domTaskBlocks = document.querySelectorAll('.task-block');
-
-        // this.currentDroppable = null;
-
+        this.ulDomArr = [].map.call(this.domTaskBlocks, (el) => el.querySelector('ul'));
     }
 
     setCounterTask(active, finished) {
@@ -22,7 +20,6 @@ export class Board {
 
     initDragDrop() {
         let currentDroppable = null;
-        const ulDomArr = [].map.call(this.domTaskBlocks, (el) => el.querySelector('ul'));
 
         const addUnvisibleLi = (ul) => {
             const li = document.createElement('li');
@@ -50,7 +47,7 @@ export class Board {
         document.onmousedown = (e) => {
             const target = e.target;
 
-            if (![].includes.call(ulDomArr, target.parentElement)) {
+            if (!this.ulDomArr.includes(target.parentElement)) {
                 return;
             }
 
@@ -109,7 +106,7 @@ export class Board {
                 document.removeEventListener('mousemove', onMOuseMove);
                 target.onmouseup = null;
 
-                if (![].includes.call(ulDomArr, currentDroppable)) {
+                if (!this.ulDomArr.includes(currentDroppable)) {
                     targetParent.append(target);
                 } else {
                     deleteUnvisibleLi(currentDroppable);
