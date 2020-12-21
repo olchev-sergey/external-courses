@@ -204,9 +204,16 @@ body {
 /* end profile styles */
 
 /* start main block styles */
+.main-wrapper {
+    display: flex;
+    overflow-x: scroll;
+    min-width: 100%;
+    /* background: #0079bf; */
+
+}
+
 .main {
     background: #0079bf;
-    overflow-x: scroll;
     display: flex;
     align-items: flex-start;
     padding: 20px 20px 0 20px;
@@ -234,6 +241,7 @@ body {
 
 .task-block {
     min-width: 282px;
+    max-width: 340px;
     background-color: #ebecf0;
     border-radius: 10px;
     padding: 10px;
@@ -243,6 +251,10 @@ body {
     align-items: flex-start;
     position: relative;
     margin-right: 24px;
+}
+
+.task-block:last-child {
+    margin-right: 0;
 }
 
 .task-block__title {

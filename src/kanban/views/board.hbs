@@ -1,35 +1,37 @@
-<main class="main">
-    {{#if data.length}}
+<div class="main-wrapper">
+    <main class="main">
+        {{#if data.length}}
 
-    {{#each data}}
+        {{#each data}}
 
 
-    <div class="task-block">
-        <div class="task-block__title">
-            <div class="task-block__title-text">
-                {{title}}
+        <div class="task-block">
+            <div class="task-block__title">
+                <div class="task-block__title-text">
+                    {{title}}
+                </div>
+
+                <div class="task-block__title-burger">
+                    •••
+                </div>
             </div>
 
-            <div class="task-block__title-burger">
-                •••
-            </div>
+            <ul class="task-block__task-list">
+                {{#each issues}}
+                <li class="task-block__list-item">{{name}}</li>
+                {{/each}}
+
+            </ul>
+
+            <button class="task-block__add-btn" tabindex="0"> + Add card</button>
         </div>
 
-        <ul class="task-block__task-list">
-            {{#each issues}}
-            <li class="task-block__list-item">{{name}}</li>
-            {{/each}}
-
-        </ul>
-
-        <button class="task-block__add-btn" tabindex="0"> + Add card</button>
-    </div>
-
-    {{/each}}
+        {{/each}}
 
 
-    {{else}}
-    <p>No task block</p>
-    {{/if}}
+        {{else}}
+        <p>No task block</p>
+        {{/if}}
 
-</main>
+    </main>
+</div>
