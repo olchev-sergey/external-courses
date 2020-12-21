@@ -208,8 +208,6 @@ body {
     display: flex;
     overflow-x: scroll;
     min-width: 100%;
-    /* background: #0079bf; */
-
 }
 
 .main {
