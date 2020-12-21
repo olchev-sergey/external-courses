@@ -79,8 +79,11 @@ class DataMockModel {
 
     async deleteBlockFromFile(id) {
         const fileData = await this.getFileinJson();
-        const newFileData = fileData.filter((elem, i) => i !== id);
-        await this.writeFile(newFileData);
+
+        if (fileData) {
+            const newFileData = fileData.filter((elem, i) => i !== id);
+            await this.writeFile(newFileData);
+        }
     }
 
 

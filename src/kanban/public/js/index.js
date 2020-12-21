@@ -8,14 +8,14 @@ const finishedTask = document.querySelector('#finishedTasksCount');
 const board = new Board(main);
 board.setCounterTask(activeTask, finishedTask);
 board.initTaskBlocks();
-// board.initDragDrop();
 
-const popup = new CreateTaskPopup('popup', 'popup-inner');
-popup.setBlockAddCbk((data) => {
-    board.renderBoard(data);
-});
 
 const createBtn = document.querySelector('.create-btn');
 createBtn.addEventListener('click', (e) => {
+    const popup = new CreateTaskPopup('popup', 'popup-inner');
+    popup.setBlockAddCbk((data) => {
+        board.renderBoard(data);
+    });
+
     document.body.append(popup.getDomElement());
 });
