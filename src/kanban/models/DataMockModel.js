@@ -1,3 +1,5 @@
+/*eslint no-param-reassign: ["error", { "props": false }]*/
+
 const path = require('path');
 const fs = require('fs');
 
@@ -9,6 +11,7 @@ class DataMockModel {
     async writeFile(jsonData) {
         const promise = new Promise((res, rej) => {
             fs.writeFile(this.url, JSON.stringify(jsonData, null, 4), (err) => {
+
                 if (err) {
                     console.log(err);
                     rej(err);
@@ -20,7 +23,6 @@ class DataMockModel {
 
         try {
             const t = await promise;
-            // console.log(t);
         } catch(e) {
             console.log(e);
         }
@@ -40,24 +42,48 @@ class DataMockModel {
         });
 
         const data = await promise;
+
         return data;
-        
     }
 
     async getFileinJson() {
         try {
             const data = await this.readFile();
             const jsonData = JSON.parse(data);
+
             return jsonData;
         } catch(e) {
             console.log(e);
         }
+
+        return null;
     }
 
     updateTaskId(jsonData) {
         jsonData.forEach((elem, i) => {
-            elem["id"] = `task${i+1}`;
+            elem.id = `task${i+1}`;
         });
+    }
+
+    async addBlockToBeginFile(title) {
+        const fileData = await this.getFileinJson();
+
+        await this.writeFile([
+            {
+                'title': title,
+                'issues': [],
+            },
+            ...fileData,
+        ]);
+    }
+
+    async deleteBlockFromFile(id) {
+        const fileData = await this.getFileinJson();
+
+        if (fileData) {
+            const newFileData = fileData.filter((elem, i) => i !== id);
+            await this.writeFile(newFileData);
+        }
     }
 
 
@@ -75,18 +101,16 @@ class DataMockModel {
 
     async deleteTaskFromFile(data, id) {
         const fileData = await this.getFileinJson();
-
         const targetData = fileData[id];
-        const deleteId = targetData.issues.findIndex((elem) => elem["name"] === data);
+
+        const deleteId = targetData.issues.findIndex((elem) => elem.name === data);
 
         targetData.issues.splice(deleteId, 1);
         this.updateTaskId(targetData.issues);
         await this.writeFile(fileData);
-        console.log('succes');
     }  
-
 }
 
-const model = new DataMockModel(path.join(__dirname, '../dataBase/dataMock.js'));
+const model = new DataMockModel(path.join(__dirname, '../dataBase/dataMock.txt'));
 
 module.exports = model;

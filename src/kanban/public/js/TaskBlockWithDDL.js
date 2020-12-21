@@ -1,19 +1,23 @@
-import TaskBlock from './TaskBlockElement.js';
-import DropDownList from './DropDownList.js';
+import { TaskBlock } from './TaskBlockElement.js';
+import { DropDownList } from './DropDownList.js';
 
-export default class TaskBlockDDL extends TaskBlock {
+export class TaskBlockDDL extends TaskBlock {
+    constructor(taskBlock, taskTextArr, id) {
+        super(taskBlock,taskTextArr, id);
+    }
 
-    prevBlock = null;
-    nextBlock = null;
+    initBtnListener() {
+        this.addBtn.addEventListener('click', () => {
+            this._btnClick();
+        });
+    }
 
-    constructor(taskBlock, id) {
-        super(taskBlock, id);
-
+    setDropDownListValue(data) {
+        this.dropDownListValue = data;
     }
 
     setPrevBlock(taskBlock) {
         this.dependentBlock = taskBlock;
-
         this.setAddBtnStatus(this.dependentBlock.isTaskListEmpty());
     }
 
@@ -23,8 +27,7 @@ export default class TaskBlockDDL extends TaskBlock {
 
     _btnClick() {
         const li = document.createElement('li');
-        const liPrevArr = this.dependentBlock.getLiTextArr();
-        const dropDownList = new DropDownList(['Choose item', ...liPrevArr], 'task-block__drop-down', 'task-block__drop-down--hidden');
+        const dropDownList = new DropDownList(['Choose item', ...this.dropDownListValue], 'task-block__drop-down', 'task-block__drop-down--hidden');
 
         li.append(dropDownList.getDropDownElement());
         this.ul.append(li);
@@ -38,15 +41,11 @@ export default class TaskBlockDDL extends TaskBlock {
                 li.remove();
                 dropDownList.dropDown.remove();
             } 
-
         });
 
         dropDownList.initChange(async () => {
-            await this.dependentBlock._fetchRequestDelete(dropDownList.value);
-            this._fetchRequestAdd(dropDownList.value);
-            this.setAddBtnStatus(this.dependentBlock.isTaskListEmpty());
+            await this._fetchRequestAdd(dropDownList.value);
             dropDownList.dropDown.remove();
         });
     }
-
 }

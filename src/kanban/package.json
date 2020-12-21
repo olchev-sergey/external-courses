@@ -12,9 +12,6 @@
       "dataBase/*.*"
     ]
   },
-  "eslintIgnore": [
-    "dataBase/*.*"
-  ],
   "keywords": [],
   "author": "",
   "license": "ISC",

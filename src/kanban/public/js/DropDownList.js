@@ -1,10 +1,10 @@
-export default class DropDownList {
-    constructor(liValueArr, dropDownClassName, hiddenClassName) {
+export class DropDownList {
+    constructor(liValueArr, dropDownClassName, hiddenClassName = '') {
         this.liValueArr = liValueArr;
-        this.dropDown = null;
         this.dropDownClassName = dropDownClassName;
         this.hiddenClassName = hiddenClassName;
-
+        
+        this.dropDown = null;
         this.value = null;
         this.selectIndex = 0;
 
@@ -31,14 +31,15 @@ export default class DropDownList {
         });
 
         this.dropDown.classList.add(this.dropDownClassName);
-        this.dropDown.classList.add(this.hiddenClassName);
+
+        if (this.hiddenClassName) this.dropDown.classList.add(this.hiddenClassName);
     }
 
     initClick(callback) {
         this.dropDown.addEventListener('click', ({ target }) => {
             if (this.dropDown.firstChild === target) {
                 this.dropDown.classList.remove(this.hiddenClassName);
-                // console.log('bbbb');
+
                 callback();
             }
         });
@@ -64,6 +65,7 @@ export default class DropDownList {
 
         this.dropDown.lastElementChild.addEventListener('focus', () => {
             this.dropDown.classList.add(this.hiddenClassName);
+            
             callBack();
         });
 
@@ -88,7 +90,6 @@ export default class DropDownList {
     }    
 
     initKeyDown() {
-
         this.dropDown.addEventListener('keydown', (e) => {
             if (e.code === 'Enter') {
                 if (this.dropDown.contains(document.activeElement) && this.dropDown !== document.activeElement) {
@@ -98,11 +99,13 @@ export default class DropDownList {
                     document.activeElement.click();
                 }
             }
+
             if (e.code === 'ArrowUp') {
                 if (document.activeElement.previousElementSibling) {
                     document.activeElement.previousElementSibling.focus();
                 }
             }
+
             if (e.code === 'ArrowDown') {
                 if (document.activeElement.nextElementSibling) {
                     document.activeElement.nextElementSibling.focus();

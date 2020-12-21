@@ -1,16 +1,44 @@
-export default class TaskBlock {
+import { DropDownList } from './DropDownList.js';
 
-    constructor(taskBlock, id) {
+export class TaskBlock {
+    constructor(taskBlock, taskTextArr, id) {
         this.block = taskBlock;
         this.id = id;
+        this.taskTextArr = this.dataToTextArr(taskTextArr);
+        this.optionsBtn = taskBlock.querySelector('.task-block__title-burger');
         this.ul = taskBlock.children[1];
         this.addBtn = taskBlock.children[2];
+
+        this.initBtnListener();
     } 
+
+    initOptionsClickListener(cbk) {
+        let drop = false;
+        const dropDownList = new DropDownList(['', 'Delete'], 'options-drop-down', '');
+        this.optionsBtn.addEventListener('click', (e) => {
+            drop = !drop;
+            
+            if (drop) {
+                this.optionsBtn.parentElement.append(dropDownList.getDropDownElement());
+                dropDownList.initChange(() => {
+                    this.block.remove();
+
+                    cbk(this.id);
+                });
+            } else {
+                dropDownList.getDropDownElement().remove();
+            }
+        });
+    }
 
     async _updateFetchRequest() {
         const promise = await fetch('/task/')
     }
-    
+
+    dataToTextArr(reqData) {
+        return reqData.map((elem) => elem.name);
+    }
+
     getLiTextArr() {
         const li = this.block.querySelectorAll('ul > li');
         const textArr = [].map.call(li, (elem) => {
@@ -32,6 +60,14 @@ export default class TaskBlock {
         }
     }
 
+    setAddReqListener(cbk) {
+        this.updateCallback = cbk;
+    }
+
+    setDelReqListener(cbk) {
+        this.deleteCallback = cbk;
+    }
+
     async _fetchRequestAdd(data) {
         const promise = await fetch('/task/addData', {
             method: 'POST',
@@ -46,7 +82,14 @@ export default class TaskBlock {
 
         try {
             const responseData = await promise.json();
-            this.renderTaskList(responseData.issues);
+
+            this.taskTextArr = this.dataToTextArr(responseData.issues);
+            this.renderTaskList(this.dataToTextArr(responseData.issues));
+
+            if (this.updateCallback) {
+                this.updateCallback(data);
+            }
+
         } catch(e) {
             console.log('ooohhhhh, no', e);
         }
@@ -66,14 +109,19 @@ export default class TaskBlock {
 
         try {
             const responseData = await promise.json();
-            this.renderTaskList(responseData.issues);
+            this.taskTextArr = this.dataToTextArr(responseData.issues);
+            this.renderTaskList(this.dataToTextArr(responseData.issues));
+
+            if (this.deleteCallback) {
+                this.deleteCallback(data);
+            }
+
         } catch(e) {
             console.log('ooohhhhh, no', e);
         }
     }
 
     _btnClick() {
-        console.log(this.isTaskListEmpty());
         const li = document.createElement('li');
         const input = document.createElement('input');
         li.append(input);
@@ -81,8 +129,8 @@ export default class TaskBlock {
 
         input.focus();
 
-        input.addEventListener('change', () => {
-            this._fetchRequestAdd(input.value);
+        input.addEventListener('change', async () => {
+            await this._fetchRequestAdd(input.value);
             input.remove();
         });
 
@@ -94,27 +142,44 @@ export default class TaskBlock {
         });
     }
 
-    _btnClickContext = this._btnClick.bind(this);
-
     initBtnListener() {
-        this.addBtn.addEventListener('click', this._btnClickContext);
+        this.addBtn.addEventListener('click', () => {
+            this._btnClick();
+        });
     }
-
-    removeBtnListener() {
-        this.addBtn.removeEventListener('click', this._btnClickContext);
-    }
-
 
     renderTask(task) {
         const li = document.createElement('li');
         li.classList.add('task-block__list-item')
-        const textNode = document.createTextNode(task.name);
+
+        const textNode = document.createTextNode(task);
         li.append(textNode);
 
         return li;
     }
 
-    renderTaskList(data) {
+    isEqualArr(arr1, arr2) {
+        if (arr1.length !== arr2.length) {
+            return false;
+        }
+
+        for (let i = 0; i < arr1.length; i++) {
+            if (arr1[i] !== arr2[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
+    renderTaskList(data = this.taskTextArr) {
+        const currentTaskArr = this.getLiTextArr();
+
+        if (this.isEqualArr(currentTaskArr, data)) {
+            return;
+        }
+
         this.ul.innerHTML = '';
 
         data.forEach((task) => {
