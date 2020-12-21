@@ -3,7 +3,7 @@
 Start node.js srever
 ```javascript
 npm i
-npm start
+npm run dev
 ```
 ---
 open
