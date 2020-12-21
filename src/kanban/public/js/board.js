@@ -195,7 +195,7 @@ export class Board {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "id": this.id
+                "id": id
             })
         });
 

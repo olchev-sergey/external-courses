@@ -34,19 +34,7 @@
             },
             {
                 "id": "task2",
-                "name": "block 2"
-            },
-            {
-                "id": "task3",
                 "name": "sdsdsd"
-            },
-            {
-                "id": "task4",
-                "name": "sdsdsd"
-            },
-            {
-                "id": "task5",
-                "name": "block 2"
             }
         ]
     },
@@ -63,6 +51,18 @@
             },
             {
                 "id": "task3",
+                "name": "sdsdsd"
+            },
+            {
+                "id": "task4",
+                "name": "block 2"
+            },
+            {
+                "id": "task5",
+                "name": "block 2"
+            },
+            {
+                "id": "task6",
                 "name": "sdsdsd"
             }
         ]
